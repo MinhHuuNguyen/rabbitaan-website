@@ -1,18 +1,14 @@
 import Layout from '../components/layout';
 import SlideShow from '../components/Slideshow';
 import styles from '../styles/Home.module.css';
-
-const images = [
-  '/images/image3.jpg',
-  '/images/image4.jpg'
-];
+import VietnamMap from '@/components/Map';
 
 export default function Home() {
   return (
     <Layout>
       <div className={styles.container}>
       <main>
-        <SlideShow images={images} />
+        <VietnamMap />
       </main>
     </div>
     </Layout>
