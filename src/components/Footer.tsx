@@ -4,7 +4,7 @@ import styles from '../styles/Footer.module.css';
 const Footer: React.FC = () => {
   return (
     <footer>
-      <div className={styles.imageDivider} style={{ backgroundImage: 'url(/images/image4.jpg)' }}>
+      <div className={styles.imageDivider} style={{ backgroundImage: 'url(https://hips.hearstapps.com/hmg-prod/images/wedding-wishes-bride-and-groom-surrounded-by-their-friends-66abb2eac5cde.jpg?crop=1xw:0.8433521923620934xh;center,top)' }}>
         <div className={styles.dividerOverlay}></div>
 
         {/* Center Middle Alignment */}
