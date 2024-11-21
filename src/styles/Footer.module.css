@@ -3,6 +3,7 @@
     height: 400px; /* Thay đổi chiều cao nếu cần */
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
   }
   
   .dividerOverlay {

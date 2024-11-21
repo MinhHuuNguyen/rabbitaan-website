@@ -1,0 +1,53 @@
+.countdownContainer {
+    text-align: center;
+    color: #fff;
+    background-image: url('https://lirp.cdn-website.com/28cd0bb4/dms3rep/multi/opt/traditional+american+wedding-1920w.jpeg'); /* Thay thế với đường dẫn ảnh nền */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 60px 0;
+    position: relative;
+  }
+  
+  .heading {
+    font-family: 'Great Vibes';
+    font-size: 78px;
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-size: 1.2em;
+    line-height: 1.5;
+  }
+  
+  .timeContainer {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+  }
+  
+  .timeBox {
+    background-color: rgba(255, 160, 160, 0.877); /* màu nền của khối thời gian */
+    padding: 20px 15px;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .time {
+    font-size: 2em;
+    font-weight: bold;
+  }
+  
+  .label {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #fff;
+  }
+  
