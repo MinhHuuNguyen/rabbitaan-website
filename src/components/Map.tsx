@@ -47,6 +47,9 @@ const VietnamMap: React.FC = () => {
 
   return (
     <div>
+      <div className={map.title}>
+          <h2>Our Journey</h2>
+        </div>
       <div
         className={map.vietnam}
         dangerouslySetInnerHTML={{ __html: svgContent }}
