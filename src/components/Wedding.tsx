@@ -15,30 +15,34 @@ const OurWedding: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
 
   useEffect(() => {
-    // Sử dụng dữ liệu từ file JSON đã import
     setEvents(eventsData.events);
   }, []);
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Wedding Events</h2>
-      <div className={styles.grid}>
-        {events.map((event, index) => (
-          <div key={index} className={styles.card}>
-            <img src={event.image} alt={event.title} />
-            <div className={styles.cardContent}>
-              <h3>{event.title}</h3>
-              <div className={styles.details}>
-                <p>📍 {event.location}</p>
-                <p>⏰ {event.time}</p>
+    <div className={styles.section}>
+      <div className={styles.container}>
+        <div className={styles.sectionTitle}>
+          <h2>OUR WEDDING</h2>
+        </div>
+        <div className={styles.eventContainer}>
+          {events.map((event, index) => (
+            <div key={index} className={styles.cardItem}>
+              <div className={styles.imgItem}><img src={event.image}/></div>
+              <div className={styles.cardContent}>
+                <h3>{event.title}</h3>
+                <ul>
+                  <li><i className="fas fa-map-marker-alt"></i> {event.location}</li>
+                  <li><i className="far fa-clock"></i> {event.time}</li>
+                </ul>
+                <p>{event.description}</p>
+                <a href={event.mapLink} target="_blank" rel="noopener noreferrer" className={styles.button}>
+                  See Location
+                </a>
               </div>
-              <p>{event.description}</p>
-              <a href={event.mapLink} target="_blank" rel="noopener noreferrer" className={styles.button}>
-                See Location
-              </a>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
       </div>
     </div>
   );
