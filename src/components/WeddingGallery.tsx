@@ -6,11 +6,12 @@ import styles from "../styles/Gallery.module.css";
 const WeddingGallery = () => {
   return (
     <section className={styles.weddingGallery}>
-      {/* Tiêu đề */}
-      <h2 className={styles.galleryTitle}>Our Wedding Gallery</h2>
-
-      {/* Lưới ảnh */}
-      <div className={styles.galleryGrid}>
+      <div className={styles.container}>
+        <div className={styles.sectionTitle}>
+          <h2>Our Wedding Gallery</h2>
+        </div>
+      </div>
+      <div className={styles.galleryContainer}>
         {galleryData.images.map((image, index) => (
           <div key={index} className={styles.galleryItem}>
             <img src={image} className={styles.galleryImage} />
