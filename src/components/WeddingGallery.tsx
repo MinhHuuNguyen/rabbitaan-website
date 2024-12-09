@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import Modal from "react-modal";
 import galleryData from "../utils/gallery.json";
 import styles from "../styles/Gallery.module.css";
 
-const WeddingGallery = () => {
-  const [selectedImage, setSelectedImage] = useState(null); 
-  const [isPopupOpen, setIsPopupOpen] = useState(false); 
 
-  const handleImageClick = (image: any) => {
+Modal.setAppElement("#__next"); 
+
+const WeddingGallery = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleImageClick = (image: string) => {
     setSelectedImage(image);
     setIsPopupOpen(true);
   };
@@ -28,24 +32,27 @@ const WeddingGallery = () => {
           <div
             key={index}
             className={styles.galleryItem}
-            onClick={() => handleImageClick(image)} 
+            onClick={() => handleImageClick(image)}
           >
             <img src={image} alt={`Wedding Image ${index}`} className={styles.galleryImage} />
           </div>
         ))}
       </div>
 
-      {/* Popup */}
-      {isPopupOpen && (
-        <div className={styles.popupOverlay} onClick={handleClosePopup}>
-          <div className={styles.popupContent} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeButton} onClick={handleClosePopup}>
-              &times;
-            </button>
-            <img src={selectedImage || ''} alt="Selected Wedding" className={styles.popupImage} />
-          </div>
-        </div>
-      )}
+      {/* Modal */}
+      <Modal
+        isOpen={isPopupOpen}
+        onRequestClose={handleClosePopup}
+        className={styles.modalContent} 
+        overlayClassName={styles.modalOverlay} 
+      >
+        <button className={styles.closeButton} onClick={handleClosePopup}>
+          &times;
+        </button>
+        {selectedImage && (
+          <img src={selectedImage} alt="Selected Wedding" className={styles.popupImage} />
+        )}
+      </Modal>
     </section>
   );
 };

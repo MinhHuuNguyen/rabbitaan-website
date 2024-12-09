@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import styles from '../styles/Wedding.module.css';
-import eventsData from '../utils/our_wedding.json';
+import React, { useEffect, useState } from "react";
+import Modal from "react-modal";
+import styles from "../styles/Wedding.module.css";
+import eventsData from "../utils/our_wedding.json";
 
 type Event = {
   image: string;
@@ -11,12 +12,26 @@ type Event = {
   mapLink: string;
 };
 
+Modal.setAppElement("#__next"); 
+
 const OurWedding: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentMapLink, setCurrentMapLink] = useState("");
 
   useEffect(() => {
     setEvents(eventsData.events);
   }, []);
+
+  const handleOpenModal = (mapLink: string) => {
+    setCurrentMapLink(mapLink);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setCurrentMapLink("");
+  };
 
   return (
     <div className={styles.section}>
@@ -27,23 +42,54 @@ const OurWedding: React.FC = () => {
         <div className={styles.eventContainer}>
           {events.map((event, index) => (
             <div key={index} className={styles.cardItem}>
-              <div className={styles.imgItem}><img src={event.image}/></div>
+              <div className={styles.imgItem}>
+                <img src={event.image} alt={event.title} />
+              </div>
               <div className={styles.cardContent}>
                 <h3>{event.title}</h3>
                 <ul>
-                  <li><i className="fas fa-map-marker-alt"></i> {event.location}</li>
-                  <li><i className="far fa-clock"></i> {event.time}</li>
+                  <li>
+                    <i className="fas fa-map-marker-alt"></i> {event.location}
+                  </li>
+                  <li>
+                    <i className="far fa-clock"></i> {event.time}
+                  </li>
                 </ul>
                 <p>{event.description}</p>
-                <a href={event.mapLink} target="_blank" rel="noopener noreferrer" className={styles.button}>
+                <button
+                  onClick={() => handleOpenModal(event.mapLink)}
+                  className={styles.button}
+                >
                   See Location
-                </a>
+                </button>
               </div>
             </div>
           ))}
         </div>
-
       </div>
+
+      {/* Popup Modal */}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={handleCloseModal}
+        className={styles.modalContent}
+        overlayClassName={styles.modalOverlay}
+      >
+        <button onClick={handleCloseModal} className={styles.closeButton}>
+          &times;
+        </button>
+        {currentMapLink && (
+          <iframe
+            src={currentMapLink}
+            width="900px"
+            height="500px"
+            style={{ border: 0 }}
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        )}
+      </Modal>
     </div>
   );
 };
