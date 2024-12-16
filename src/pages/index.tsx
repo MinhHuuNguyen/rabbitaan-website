@@ -6,6 +6,7 @@ import Profile from '@/components/Profile';
 import VietnamMap from '@/components/Map';
 import WeddingGallery from '@/components/WeddingGallery';
 import Timeline from '@/components/Timeline';
+import WeddingGiftPage from '@/components/WeddingBox';
 
 export default function Home() {
   const weddingDate = new Date('2024-12-31T00:00:00');
@@ -19,6 +20,7 @@ export default function Home() {
       <Wedding />
       <Countdown weddingDate={weddingDate} />
       <WeddingGallery />
+      <WeddingGiftPage />
       </main>
     </div>
     </Layout>
