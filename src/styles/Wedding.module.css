@@ -16,14 +16,15 @@
 }
 
 .sectionTitle h2 {
-  font-family: "Great Vibes", cursive;
-  font-size: 48px;
-  font-size: 3rem;
-  color: #f98d8a;
-  margin: 0;
-  padding-top: 1.1em;
-  text-transform: capitalize;
-  position: relative;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #4a4a4a;
+  font-size: 24px;
+  letter-spacing: 2px;
+  line-height: 30px;
+  margin: 20px 0;
+  text-transform: uppercase;
 }
 
 .eventContainer {

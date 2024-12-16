@@ -1,23 +1,26 @@
 import React, { useState } from "react";
-import Modal from "react-modal";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 import galleryData from "../utils/gallery.json";
 import styles from "../styles/Gallery.module.css";
-
-
-Modal.setAppElement("#__next"); 
+import {
+  Captions,
+  Download,
+  Fullscreen,
+  Thumbnails,
+  Zoom,
+} from 'yet-another-react-lightbox/plugins';
+import 'yet-another-react-lightbox/plugins/thumbnails.css';
 
 const WeddingGallery = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleImageClick = (image: string) => {
-    setSelectedImage(image);
-    setIsPopupOpen(true);
-  };
+  const images = galleryData.images.map((image) => ({ src: image }));
 
-  const handleClosePopup = () => {
-    setSelectedImage(null);
-    setIsPopupOpen(false);
+  const handleImageClick = (index: number) => {
+    setCurrentIndex(index);
+    setIsLightboxOpen(true);
   };
 
   return (
@@ -32,27 +35,27 @@ const WeddingGallery = () => {
           <div
             key={index}
             className={styles.galleryItem}
-            onClick={() => handleImageClick(image)}
+            onClick={() => handleImageClick(index)}
           >
-            <img src={image} alt={`Wedding Image ${index}`} className={styles.galleryImage} />
+            <img
+              src={image}
+              alt={`Wedding Image ${index}`}
+              className={styles.galleryImage}
+            />
           </div>
         ))}
       </div>
 
-      {/* Modal */}
-      <Modal
-        isOpen={isPopupOpen}
-        onRequestClose={handleClosePopup}
-        className={styles.modalContent} 
-        overlayClassName={styles.modalOverlay} 
-      >
-        <button className={styles.closeButton} onClick={handleClosePopup}>
-          &times;
-        </button>
-        {selectedImage && (
-          <img src={selectedImage} alt="Selected Wedding" className={styles.popupImage} />
-        )}
-      </Modal>
+      {/* Lightbox */}
+      {isLightboxOpen && (
+        <Lightbox
+          plugins={[Download, Fullscreen, Zoom, Thumbnails]}
+          slides={images} 
+          open={isLightboxOpen} 
+          close={() => setIsLightboxOpen(false)} 
+          index={currentIndex} 
+        />
+      )}
     </section>
   );
 };
