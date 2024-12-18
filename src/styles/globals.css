@@ -32,27 +32,24 @@ a {
   box-sizing: border-box;
 }
 
-.header-intro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-  height: 60px;
-  color: #fff;
-  background-color: #fa4996;
-}
-.header-intro-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-.header-intro-content i {
-  font-size: 24px;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
+
+/* Heart Preloader */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.heart {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+

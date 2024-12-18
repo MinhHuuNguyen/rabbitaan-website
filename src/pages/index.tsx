@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Layout from '../components/layout';
 import styles from '../styles/Home.module.css';
 import Countdown from '@/components/Countdown';
@@ -7,22 +8,37 @@ import VietnamMap from '@/components/Map';
 import WeddingGallery from '@/components/WeddingGallery';
 import Timeline from '@/components/Timeline';
 import WeddingGiftPage from '@/components/WeddingBox';
+import Preloader from '@/components/Preloader'; 
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
   const weddingDate = new Date('2024-12-31T00:00:00');
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false); 
+    }, 1000);
+  }, []);
+
   return (
     <Layout>
+      {loading && <Preloader />} {}
       <div className={styles.container}>
-      <main>
-      <Profile />
-      <Timeline />
-      <VietnamMap />
-      <Wedding />
-      <Countdown weddingDate={weddingDate} />
-      <WeddingGallery />
-      <WeddingGiftPage />
-      </main>
-    </div>
+        <main
+          className={`${
+            loading ? 'opacity-0' : 'opacity-100'
+          } ${loading ? 'translate-y-10' : 'translate-y-0'} transition-all duration-700 ease-out`} 
+        >
+          {/* Apply fade-in and slide-up effect */}
+          <Profile />
+          <Timeline />
+          <VietnamMap />
+          <Wedding />
+          <Countdown weddingDate={weddingDate} />
+          <WeddingGallery />
+          <WeddingGiftPage />
+        </main>
+      </div>
     </Layout>
   );
 }
