@@ -2,15 +2,13 @@ import React, { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import galleryData from "../utils/gallery.json";
-import styles from "../styles/Gallery.module.css";
 import {
-  Captions,
   Download,
   Fullscreen,
   Thumbnails,
   Zoom,
-} from 'yet-another-react-lightbox/plugins';
-import 'yet-another-react-lightbox/plugins/thumbnails.css';
+} from "yet-another-react-lightbox/plugins";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 const WeddingGallery = () => {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -24,23 +22,24 @@ const WeddingGallery = () => {
   };
 
   return (
-    <section className={styles.weddingGallery}>
-      <div className={styles.container}>
-        <div className={styles.sectionTitle}>
-          <h2>Our Wedding Gallery</h2>
+    <section className="my-20 mx-5 w-full">
+      <div className="max-w-screen-xl mx-auto px-4">
+        {/* Title Section */}
+        <div className="mb-12 text-center uppercase">
+          <h2 className="font-serif text-4xl text-[#6d4c41] mb-5">Our Wedding Gallery</h2>
         </div>
       </div>
-      <div className={styles.galleryContainer}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-screen-xl mx-auto">
         {galleryData.images.map((image, index) => (
           <div
             key={index}
-            className={styles.galleryItem}
+            className="relative overflow-hidden w-full pt-[100%] cursor-pointer"
             onClick={() => handleImageClick(index)}
           >
             <img
               src={image}
               alt={`Wedding Image ${index}`}
-              className={styles.galleryImage}
+              className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-500 ease-in-out transform grayscale-[50%] hover:scale-110 hover:grayscale-0"
             />
           </div>
         ))}
@@ -50,10 +49,10 @@ const WeddingGallery = () => {
       {isLightboxOpen && (
         <Lightbox
           plugins={[Download, Fullscreen, Zoom, Thumbnails]}
-          slides={images} 
-          open={isLightboxOpen} 
-          close={() => setIsLightboxOpen(false)} 
-          index={currentIndex} 
+          slides={images}
+          open={isLightboxOpen}
+          close={() => setIsLightboxOpen(false)}
+          index={currentIndex}
         />
       )}
     </section>
