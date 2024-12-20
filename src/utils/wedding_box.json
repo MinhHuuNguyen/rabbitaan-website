@@ -1,0 +1,19 @@
+[
+    {
+      "id": 1,
+      "title": "Mừng cưới nhà trai",
+      "bankName": "Techcombank",
+      "accountHolder": "NGUYỄN HỮU TÀI",
+      "accountNumber": "105870926230",
+      "qrCode": "/images/qrcode-mung-cuoi-trai.png"
+    },
+    {
+      "id": 2,
+      "title": "Mừng cưới nhà gái",
+      "bankName": "Techcombank",
+      "accountHolder": "NGUYỄN HỮU TÀI",
+      "accountNumber": "0010142786902",
+      "qrCode": "/images/qrcode-mung-cuoi-gai.png"
+    }
+  ]
+  
