@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
 import map from "../styles/VietnamMap.module.css";
 import placesData from '../utils/json/trips.json';
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+import { Download, Fullscreen, Zoom, Thumbnails } from 'yet-another-react-lightbox/plugins';
+import 'yet-another-react-lightbox/plugins/thumbnails.css';
 
 const VietnamMap: React.FC = () => {
   const [svgContent, setSvgContent] = useState<string>('');
   const [highlightedProvinces, setHighlightedProvinces] = useState<string[]>([]);
-  const [selectedProvinceImages, setSelectedProvinceImages] = useState<string[]>([]); 
-  const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+  const [selectedProvinceImages, setSelectedProvinceImages] = useState<string[]>([]);
+  const [isLightboxOpen, setIsLightboxOpen] = useState<boolean>(false);
 
   useEffect(() => {
     // Load Viet Nam Map SVG
@@ -15,10 +19,10 @@ const VietnamMap: React.FC = () => {
       .then((data) => {
         const provinces = placesData.map((item) => item.place);
         setHighlightedProvinces(provinces);
-  
+
         const parser = new DOMParser();
         const svgDoc = parser.parseFromString(data, "image/svg+xml");
-  
+
         svgDoc.querySelectorAll('path').forEach((path) => {
           const provinceName = path.getAttribute('title');
           if (provinceName && provinces.includes(provinceName)) {
@@ -37,16 +41,19 @@ const VietnamMap: React.FC = () => {
     const provinceData = placesData.find(item => item.place === provinceName);
     if (provinceData) {
       setSelectedProvinceImages(provinceData.image.slice(0, 6)); 
-      setIsPopupOpen(true);
+      setIsLightboxOpen(true); 
     }
   };
 
-  const closePopup = () => {
-    setIsPopupOpen(false); 
+  const closeLightbox = () => {
+    setIsLightboxOpen(false);
   };
 
   return (
     <div>
+      <div className={map.title}>
+        <h2>Our Journey</h2>
+      </div>
       <div
         className={map.vietnam}
         dangerouslySetInnerHTML={{ __html: svgContent }}
@@ -60,18 +67,13 @@ const VietnamMap: React.FC = () => {
           }
         }}
       />
-      {isPopupOpen && (
-        <div className={map.popup}>
-          <div className={map.popupContent}>
-            <span className={map.closeButton} onClick={closePopup}>&times;</span>
-            <h2>Images</h2>
-            <div className={map.imageGrid}>
-              {selectedProvinceImages.map((image, index) => (
-                <img key={index} src={image} alt={image} className={map.image} />
-              ))}
-            </div>
-          </div>
-        </div>
+      {isLightboxOpen && (
+        <Lightbox
+          plugins={[Download, Fullscreen, Zoom, Thumbnails]}
+          slides={selectedProvinceImages.map((image) => ({ src: image }))}
+          open={isLightboxOpen}
+          close={closeLightbox}
+        />
       )}
     </div>
   );

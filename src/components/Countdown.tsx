@@ -24,7 +24,7 @@ const Countdown: React.FC<CountdownProps> = ({ weddingDate }) => {
         const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-        
+
         setTimeLeft({ days, hours, minutes, seconds });
       } else {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -37,29 +37,29 @@ const Countdown: React.FC<CountdownProps> = ({ weddingDate }) => {
 
   return (
     <div className={styles.countdownContainer}>
-      <h2 className={styles.heading}>Counting</h2>
-      <p className={styles.description}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada
-        aliquam nunc a pharetra.
-      </p>
-      <div className={styles.timeContainer}>
-        <div className={styles.timeBox}>
-          <span className={styles.time}>{timeLeft.days}</span>
-          <span className={styles.label}>DAYS</span>
-        </div>
-        <div className={styles.timeBox}>
-          <span className={styles.time}>{timeLeft.hours}</span>
-          <span className={styles.label}>HOURS</span>
-        </div>
-        <div className={styles.timeBox}>
-          <span className={styles.time}>{timeLeft.minutes}</span>
-          <span className={styles.label}>MINUTES</span>
-        </div>
-        <div className={styles.timeBox}>
-          <span className={styles.time}>{timeLeft.seconds}</span>
-          <span className={styles.label}>SECONDS</span>
-        </div>
-      </div>
+      <div className={styles.centerContainer}><h2 className={styles.heading}>Counting</h2>
+        <p className={styles.description}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada
+          aliquam nunc a pharetra.
+        </p>
+        <div className={styles.timeContainer}>
+          <div className={styles.timeBox}>
+            <span className={styles.time}>{timeLeft.days}</span>
+            <span className={styles.label}>DAYS</span>
+          </div>
+          <div className={styles.timeBox}>
+            <span className={styles.time}>{timeLeft.hours}</span>
+            <span className={styles.label}>HOURS</span>
+          </div>
+          <div className={styles.timeBox}>
+            <span className={styles.time}>{timeLeft.minutes}</span>
+            <span className={styles.label}>MINUTES</span>
+          </div>
+          <div className={styles.timeBox}>
+            <span className={styles.time}>{timeLeft.seconds}</span>
+            <span className={styles.label}>SECONDS</span>
+          </div>
+        </div></div>
     </div>
   );
 };
