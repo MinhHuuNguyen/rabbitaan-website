@@ -26,8 +26,8 @@ const VietnamMap: React.FC = () => {
         svgDoc.querySelectorAll('path').forEach((path) => {
           const provinceName = path.getAttribute('title');
           if (provinceName && provinces.includes(provinceName)) {
-            path.setAttribute('fill', '#ffcc00'); 
-            path.setAttribute('data-highlight', 'true'); 
+            path.setAttribute('fill', '#ffcc00');
+            path.setAttribute('data-highlight', 'true');
           }
         });
 
@@ -40,9 +40,13 @@ const VietnamMap: React.FC = () => {
   const handleProvinceClick = (provinceName: string) => {
     const provinceData = placesData.find(item => item.place === provinceName);
     if (provinceData) {
-      setSelectedProvinceImages(provinceData.image.slice(0, 6)); 
-      setIsLightboxOpen(true); 
+      setSelectedProvinceImages(provinceData.image);
+      setIsLightboxOpen(true);
     }
+  };
+
+  const handleCircularImageClick = (provinceName: string) => {
+    handleProvinceClick(provinceName);
   };
 
   const closeLightbox = () => {
@@ -50,31 +54,54 @@ const VietnamMap: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="container mx-auto my-8">
       <div className={map.title}>
         <h2>Our Journey</h2>
       </div>
-      <div
-        className={map.vietnam}
-        dangerouslySetInnerHTML={{ __html: svgContent }}
-        onClick={(event) => {
-          const target = event.target as SVGElement;
-          if (target.tagName === 'path') {
-            const provinceName = target.getAttribute('title');
-            if (provinceName) {
-              handleProvinceClick(provinceName);
-            }
-          }
-        }}
-      />
-      {isLightboxOpen && (
-        <Lightbox
-          plugins={[Download, Fullscreen, Zoom, Thumbnails]}
-          slides={selectedProvinceImages.map((image) => ({ src: image }))}
-          open={isLightboxOpen}
-          close={closeLightbox}
-        />
-      )}
+      <div className="flex flex-col md:flex-row gap-6 p-4">
+        {/* Map Container */}
+        <div className="md:w-1/3 flex justify-center items-center">
+          <div
+            className={map.vietnam}
+            dangerouslySetInnerHTML={{ __html: svgContent }}
+            onClick={(event) => {
+              const target = event.target as SVGElement;
+              if (target.tagName === 'path') {
+                const provinceName = target.getAttribute('title');
+                if (provinceName) {
+                  handleProvinceClick(provinceName);
+                }
+              }
+            }}
+          />
+        </div>
+
+        {/* Circular Images Container */}
+        <div className="md:w-2/3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+          {placesData.map((place, index) => (
+            <div
+              key={index}
+              className="w-24 h-24 text-center cursor-pointer"
+              onClick={() => handleCircularImageClick(place.place)}
+            >
+              <img
+                src={place.image[0]}
+                className="w-24 h-24 rounded-full border-2 border-gray-300 hover:scale-110 hover:shadow-md transition"
+              />
+              <span className="block mt-2 text-sm text-gray-600">{place.place}</span>
+            </div>
+          ))}
+        </div>
+
+        {isLightboxOpen && (
+          <Lightbox
+            plugins={[Download, Fullscreen, Zoom, Thumbnails]}
+            slides={selectedProvinceImages.map((image) => ({ src: image }))}
+            open={isLightboxOpen}
+            close={closeLightbox}
+          />
+        )}
+      </div>
     </div>
   );
 };
