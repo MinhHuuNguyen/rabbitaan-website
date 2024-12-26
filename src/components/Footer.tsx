@@ -1,28 +1,24 @@
-import Image from 'next/image';
-import styles from '../styles/Footer.module.css';
+import React from 'react';
 
 const Footer: React.FC = () => {
-  return (
-    <footer>
-      <div className={styles.imageDivider} style={{ backgroundImage: 'url(https://hips.hearstapps.com/hmg-prod/images/wedding-wishes-bride-and-groom-surrounded-by-their-friends-66abb2eac5cde.jpg?crop=1xw:0.8433521923620934xh;center,top)' }}>
-        <div className={styles.dividerOverlay}></div>
 
-        {/* Center Middle Alignment */}
-        <div className={styles.alignment}>
-          <div className={styles.vAlign}>
-            <div className={styles.container}>
-              <div className={styles.row}>
-                <div className={styles.col}>
-                  <div id="thank-you" className={styles.thankYou}>
-                    <div id="thank" className={styles.animation}>Thank</div>
-                    <div id="you" className={styles.animation}>You</div>
-                  </div>
-                  <h6 className={styles.animation}>ALBERT & EMILY</h6>
-                </div>
-              </div>
-            </div>
-          </div>
+  return (
+    <footer className="bg-white py-12">
+      <div className="container mx-auto text-center">
+        {/* Circle Image with Decorative Border */}
+        <div className="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto mb-6">
+          <img
+            src="https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/473740TgN/meo-anh-long-ngan-british-shorthair-624958.jpg"
+            className="w-full h-full rounded-full border-4 border-gray-300 shadow-lg object-cover"
+          />
+          <div
+            className="absolute inset-0 rounded-full border-8 border-opacity-30 border-white"
+            aria-hidden="true"
+          ></div>
         </div>
+
+        {/* Thank You Text */}
+        <h2 className="text-3xl font-bold text-gray-700 italic">Thank you!</h2>
       </div>
     </footer>
   );
