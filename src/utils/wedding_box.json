@@ -1,19 +1,14 @@
 [
-    {
-      "id": 1,
-      "title": "Mừng cưới nhà trai",
-      "bankName": "Techcombank",
-      "accountHolder": "NGUYỄN HỮU TÀI",
-      "accountNumber": "105870926230",
-      "qrCode": "https://qrcode-gen.com/images/qrcode-default.png"
-    },
-    {
-      "id": 2,
-      "title": "Mừng cưới nhà gái",
-      "bankName": "Techcombank",
-      "accountHolder": "NGUYỄN HỮU TÀI",
-      "accountNumber": "0010142786902",
-      "qrCode": "https://qrcode-gen.com/images/qrcode-default.png"
-    }
-  ]
-  
+  {
+    "id": 1,
+    "title": "NHÀ TRAI",
+    "accountNumber": "0021000464210",
+    "qrCode": "/images/qr_vcb.jpg"
+  },
+  {
+    "id": 2,
+    "title": "NHÀ GÁI",
+    "accountNumber": "2020199798888",
+    "qrCode": "/images/qr_vcb.jpg"
+  }
+]
