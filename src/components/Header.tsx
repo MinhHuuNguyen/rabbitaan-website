@@ -37,7 +37,7 @@ const Header = () => {
             <div className="flex-1 flex items-center justify-between">
               <div className="flex-1 flex flex-col items-center sm:items-start justify-center">
                 <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-black font-semibold text-center my-5">
-                  Hữu Minh <i className="fa fa-heart fa-1x text-red-400"></i> Thảo Anh
+                Minh và Thảo Anh <i className="fa fa-heart fa-1x text-red-400"></i> 
                 </h1>
               </div>
               <div className="hidden md:ml-6 md:block">

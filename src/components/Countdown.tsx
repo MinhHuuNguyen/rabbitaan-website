@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import styles from '../styles/Countdown.module.css';
 
-interface CountdownProps {
-  weddingDate: Date;
-}
+// Define wedding date to countdown
+const WEDDING_DATE = new Date('2025-03-18T18:00:00');
 
-const Countdown: React.FC<CountdownProps> = ({ weddingDate }) => {
+const Countdown: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -16,7 +15,7 @@ const Countdown: React.FC<CountdownProps> = ({ weddingDate }) => {
   useEffect(() => {
     const updateCountdown = () => {
       const now = new Date().getTime();
-      const weddingTime = weddingDate.getTime();
+      const weddingTime = WEDDING_DATE.getTime();
       const difference = weddingTime - now;
 
       if (difference > 0) {
@@ -33,7 +32,7 @@ const Countdown: React.FC<CountdownProps> = ({ weddingDate }) => {
 
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
-  }, [weddingDate]);
+  }, [WEDDING_DATE]);
 
   return (
     <div className={styles.countdownContainer}>
