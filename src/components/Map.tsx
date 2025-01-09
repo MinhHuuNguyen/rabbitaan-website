@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import map from "../styles/VietnamMap.module.css";
-import placesData from '../utils/json/trips.json';
+import placesData from '../utils/trips.json';
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { Download, Fullscreen, Zoom, Thumbnails } from 'yet-another-react-lightbox/plugins';
