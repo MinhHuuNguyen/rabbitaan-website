@@ -34,7 +34,7 @@ const OurWedding: React.FC = () => {
   };
 
   return (
-    <div className={styles.section}>
+    <div id="wedding" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.sectionTitle}>
           <h2>OUR WEDDING</h2>

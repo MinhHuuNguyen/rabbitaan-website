@@ -1,15 +1,15 @@
 {
-  "title": "Happy Couple",
+  "title": "Cô Dâu Chú Rể",
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada aliquam nunc a pharetra. Pellentesque sit amet placerat magna.",
   "couples": [
     {
-      "role": "The Groom",
+      "role": "Chú Rể",
       "name": "Cristiano Ronaldo",
       "image": "https://hips.hearstapps.com/hmg-prod/images/cristiano-ronaldo-of-portugal-reacts-as-he-looks-on-during-news-photo-1725633476.jpg",
       "bio": "Sed tempor purus neque, luctus rutrum libero posuere quis. Sed sit amet nisl quam. Mauris elit enim, imperdiet a mollis ac, vestibulum scelerisque est."
     },
     {
-      "role": "The Bride",
+      "role": "Cô Dâu",
       "name": "Lionel Messi",
       "image": "https://icdn.24h.com.vn/upload/4-2024/images/2024-11-14/9-495-1731522808-665-width740height495.jpg",
       "bio": "Ut malesuada sed est sed porttitor. Vestibulum quis turpis at lacus commodo elementum sit amet et mauris. In non ligula facilisis."

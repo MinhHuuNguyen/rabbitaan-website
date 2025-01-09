@@ -54,7 +54,7 @@ const VietnamMap: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto my-8">
+    <div id="journey" className="container mx-auto my-8">
       <div className={map.title}>
         <h2>Our Journey</h2>
       </div>
