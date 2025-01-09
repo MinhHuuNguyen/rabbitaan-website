@@ -3,7 +3,7 @@ import profile from '../utils/profile.json';
 
 const Profile: React.FC = () => {
   return (
-    <div className="my-24 mx-5 w-full">
+    <div id="couple" className="my-24 mx-5 w-full">
       <div className="max-w-screen-xl mx-auto px-4">
       <div className="mb-12 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">HAPPY COUPLE</h2>

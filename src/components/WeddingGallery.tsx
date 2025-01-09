@@ -22,7 +22,7 @@ const WeddingGallery = () => {
   };
 
   return (
-    <section className="my-20 mx-5 w-full">
+    <section id="gallery" className="my-20 mx-5 w-full">
       <div className="max-w-screen-xl mx-auto px-4">
         {/* Title Section */}
         <div className="mb-12 text-center uppercase">

@@ -5,7 +5,7 @@
       "bankName": "Techcombank",
       "accountHolder": "NGUYỄN HỮU TÀI",
       "accountNumber": "105870926230",
-      "qrCode": "/images/qrcode-mung-cuoi-trai.png"
+      "qrCode": "https://qrcode-gen.com/images/qrcode-default.png"
     },
     {
       "id": 2,
@@ -13,7 +13,7 @@
       "bankName": "Techcombank",
       "accountHolder": "NGUYỄN HỮU TÀI",
       "accountNumber": "0010142786902",
-      "qrCode": "/images/qrcode-mung-cuoi-gai.png"
+      "qrCode": "https://qrcode-gen.com/images/qrcode-default.png"
     }
   ]
   

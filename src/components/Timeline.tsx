@@ -9,7 +9,7 @@ import styles from "../styles/Timeline.module.css";
 
 const WeddingTimeline = () => {
   return (
-    <div className={styles.timelineSection}>
+    <div id="story" className={styles.timelineSection}>
       <div className={styles.container}>
         <div className={styles.titleSection}>
           <h2>Our story</h2>
