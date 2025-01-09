@@ -36,8 +36,8 @@ const OurWedding: React.FC = () => {
   return (
     <div id="wedding" className={styles.section}>
       <div className={styles.container}>
-        <div className={styles.sectionTitle}>
-          <h2>OUR WEDDING</h2>
+        <div className="mb-12 text-center uppercase">
+          <h2 className="font-serif text-4xl text-[#6d4c41] mb-5">ĐÁM CƯỚI CỦA CHÚNG MÌNH</h2>
         </div>
         <div className={styles.eventContainer}>
           {events.map((event, index) => (
@@ -48,19 +48,13 @@ const OurWedding: React.FC = () => {
               <div className={styles.cardContent}>
                 <h3>{event.title}</h3>
                 <ul>
-                  <li>
-                    <i className="fas fa-map-marker-alt"></i> {event.location}
-                  </li>
-                  <li>
-                    <i className="far fa-clock"></i> {event.time}
-                  </li>
+                  <li><i className="fas fa-map-marker-alt"></i> {event.location}</li>
+                  <li><i className="fas fa-map-marker-alt"></i> {event.address}</li>
+                  <li><i className="far fa-clock"></i> {event.time}</li>
                 </ul>
                 <p>{event.description}</p>
-                <button
-                  onClick={() => handleOpenModal(event.mapLink)}
-                  className={styles.button}
-                >
-                  See Location
+                <button onClick={() => handleOpenModal(event.mapLink)} className={styles.button}>
+                  Xem bản đồ
                 </button>
               </div>
             </div>

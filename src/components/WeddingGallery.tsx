@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import galleryData from "../utils/gallery.json";
-import {
-  Download,
-  Fullscreen,
-  Thumbnails,
-  Zoom,
-} from "yet-another-react-lightbox/plugins";
+import { Download, Fullscreen, Thumbnails, Zoom } from "yet-another-react-lightbox/plugins";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 const WeddingGallery = () => {
@@ -24,7 +19,6 @@ const WeddingGallery = () => {
   return (
     <section id="gallery" className="my-20 mx-5 w-full">
       <div className="max-w-screen-xl mx-auto px-4">
-        {/* Title Section */}
         <div className="mb-12 text-center uppercase">
           <h2 className="font-serif text-4xl text-[#6d4c41] mb-5">Our Wedding Gallery</h2>
         </div>
