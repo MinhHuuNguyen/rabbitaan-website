@@ -65,6 +65,15 @@ const VietnamMap: React.FC = () => {
           <div
             className={map.vietnam}
             dangerouslySetInnerHTML={{ __html: svgContent }}
+            onClick={(event) => {
+              const target = event.target as SVGElement;
+              if (target.tagName === 'path') {
+                const provinceName = target.getAttribute('title');
+                if (provinceName) {
+                  handleProvinceClick(provinceName);
+                }
+              }
+            }}
             onMouseOver={(event) => {
               const target = event.target as SVGElement;
               if (target.tagName === 'path') {
@@ -72,8 +81,7 @@ const VietnamMap: React.FC = () => {
                 if (provinceName) {
                   setHoveredProvince(provinceName);
                 }
-              }
-            }}
+              }}}
             onMouseOut={() => {
               setHoveredProvince(null);
             }}
