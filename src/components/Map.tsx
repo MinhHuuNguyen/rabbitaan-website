@@ -11,6 +11,8 @@ const VietnamMap: React.FC = () => {
   const [highlightedProvinces, setHighlightedProvinces] = useState<string[]>([]);
   const [selectedProvinceImages, setSelectedProvinceImages] = useState<string[]>([]);
   const [isLightboxOpen, setIsLightboxOpen] = useState<boolean>(false);
+  const [hoveredProvince, setHoveredProvince] = useState<string | null>(null);
+
 
   useEffect(() => {
     // Load Viet Nam Map SVG
@@ -26,7 +28,6 @@ const VietnamMap: React.FC = () => {
         svgDoc.querySelectorAll('path').forEach((path) => {
           const provinceName = path.getAttribute('title');
           if (provinceName && provinces.includes(provinceName)) {
-            path.setAttribute('fill', '#ffcc00');
             path.setAttribute('data-highlight', 'true');
           }
         });
@@ -64,14 +65,17 @@ const VietnamMap: React.FC = () => {
           <div
             className={map.vietnam}
             dangerouslySetInnerHTML={{ __html: svgContent }}
-            onClick={(event) => {
+            onMouseOver={(event) => {
               const target = event.target as SVGElement;
               if (target.tagName === 'path') {
                 const provinceName = target.getAttribute('title');
                 if (provinceName) {
-                  handleProvinceClick(provinceName);
+                  setHoveredProvince(provinceName);
                 }
               }
+            }}
+            onMouseOut={() => {
+              setHoveredProvince(null);
             }}
           />
         </div>
@@ -81,7 +85,8 @@ const VietnamMap: React.FC = () => {
           {placesData.map((place, index) => (
             <div
               key={index}
-              className="w-24 h-24 text-center cursor-pointer"
+              className={`w-24 h-24 rounded-full text-center cursor-pointer ${hoveredProvince === place.place ? 'ring-4 ring-yellow-400' : ''
+                }`}
               onClick={() => handleCircularImageClick(place.place)}
             >
               <img
@@ -89,6 +94,7 @@ const VietnamMap: React.FC = () => {
                 className="w-24 h-24 rounded-full border-2 border-gray-300 hover:scale-110 hover:shadow-md transition"
               />
               <span className="block mt-2 text-sm text-gray-600">{place.place}</span>
+              <span className="block font-bold text-xs text-gray-500">{place.day}</span>
             </div>
           ))}
         </div>
