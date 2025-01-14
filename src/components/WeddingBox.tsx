@@ -28,7 +28,7 @@ const WeddingBox: React.FC = () => {
               <img
                 src={item.qrCode}
                 alt="QR Code"
-                className="w-40 h-40 object-contain mx-auto mb-4 cursor-pointer"
+                className="w-40 h-30 mx-auto mb-4 cursor-pointer"
                 onClick={() => openLightbox(item.qrCode)}
               />
             </div>

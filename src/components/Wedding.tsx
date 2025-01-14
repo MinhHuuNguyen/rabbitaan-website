@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Navigation, Pagination } from "swiper/modules";
 import styles from "../styles/Wedding.module.css";
 import eventsData from "../utils/our_wedding.json";
 
@@ -7,12 +12,13 @@ type Event = {
   image: string;
   title: string;
   location: string;
+  address: string;
   time: string;
   description: string;
   mapLink: string;
 };
 
-Modal.setAppElement("#__next"); 
+Modal.setAppElement("#__next");
 
 const OurWedding: React.FC = () => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -36,30 +42,53 @@ const OurWedding: React.FC = () => {
   return (
     <div id="wedding" className={styles.section}>
       <div className={styles.container}>
-        <div className="mb-12 text-center uppercase">
-          <h2 className="font-serif text-4xl text-[#6d4c41] mb-5">ĐÁM CƯỚI CỦA CHÚNG MÌNH</h2>
+        <div className={styles.sectionTitle}>
+          <h2>OUR WEDDING</h2>
         </div>
-        <div className={styles.eventContainer}>
+        <Swiper
+          modules={[Navigation, Pagination]}
+          navigation
+          pagination={{ clickable: true }}
+          spaceBetween={20}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          className={styles.eventSlider}
+        >
           {events.map((event, index) => (
-            <div key={index} className={styles.cardItem}>
-              <div className={styles.imgItem}>
-                <img src={event.image} alt={event.title} />
+            <SwiperSlide key={index}>
+              <div className={styles.cardItem}>
+                <div className={styles.imgItem}>
+                  <img src={event.image} alt={event.title} />
+                </div>
+                <div className={styles.cardContent}>
+                  <h3>{event.title}</h3>
+                  <ul>
+                    <li>
+                      <i className="fas fa-map-marker-alt"></i> {event.location}
+                    </li>
+                    <li>
+                      <i className="fas fa-map-marker-alt"></i> {event.address}
+                    </li>
+                    <li>
+                      <i className="far fa-clock"></i> {event.time}
+                    </li>
+                  </ul>
+                  <p>{event.description}</p>
+                  <button
+                    onClick={() => handleOpenModal(event.mapLink)}
+                    className={styles.button}
+                  >
+                    See Location
+                  </button>
+                </div>
               </div>
-              <div className={styles.cardContent}>
-                <h3>{event.title}</h3>
-                <ul>
-                  <li><i className="fas fa-map-marker-alt"></i> {event.location}</li>
-                  <li><i className="fas fa-map-marker-alt"></i> {event.address}</li>
-                  <li><i className="far fa-clock"></i> {event.time}</li>
-                </ul>
-                <p>{event.description}</p>
-                <button onClick={() => handleOpenModal(event.mapLink)} className={styles.button}>
-                  Xem bản đồ
-                </button>
-              </div>
-            </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
 
       {/* Popup Modal */}
