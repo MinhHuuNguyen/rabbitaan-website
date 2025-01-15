@@ -5,6 +5,7 @@ import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { Download, Fullscreen, Zoom, Thumbnails } from 'yet-another-react-lightbox/plugins';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
+import Image from "next/image";
 
 const VietnamMap: React.FC = () => {
   const [svgContent, setSvgContent] = useState<string>('');
@@ -97,8 +98,11 @@ const VietnamMap: React.FC = () => {
                 }`}
               onClick={() => handleCircularImageClick(place.place)}
             >
-              <img
+              <Image
                 src={place.image[0]}
+                alt={place.place}
+                width={96}
+                height={96}
                 className="w-24 h-24 rounded-full border-2 border-gray-300 hover:scale-110 hover:shadow-md transition"
               />
               <span className="block mt-2 text-sm text-gray-600">{place.place}</span>

@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import styles from "../styles/Wedding.module.css";
 import eventsData from "../utils/our_wedding.json";
+import Image from "next/image";
 
 type Event = {
   image: string;
@@ -62,20 +63,20 @@ const OurWedding: React.FC = () => {
             <SwiperSlide key={index}>
               <div className={styles.cardItem}>
                 <div className={styles.imgItem}>
-                  <img src={event.image} alt={event.title} />
+                  <Image
+                    src={event.image}
+                    alt={event.title}
+                    width={400}
+                    height={300}
+                    layout="responsive"
+                  />
                 </div>
                 <div className={styles.cardContent}>
                   <h3>{event.title}</h3>
                   <ul>
-                    <li>
-                      <i className="fas fa-map-marker-alt"></i> {event.location}
-                    </li>
-                    <li>
-                      <i className="fas fa-map-marker-alt"></i> {event.address}
-                    </li>
-                    <li>
-                      <i className="far fa-clock"></i> {event.time}
-                    </li>
+                    <li><i className="fas fa-map-marker-alt"></i> {event.location}</li>
+                    <li><i className="fas fa-map-marker-alt"></i> {event.address}</li>
+                    <li><i className="far fa-clock"></i> {event.time}</li>
                   </ul>
                   <p>{event.description}</p>
                   <button

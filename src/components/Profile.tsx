@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import profile from '../utils/profile.json';
+import Image from "next/image";
 
 const Profile: React.FC = () => {
   return (
@@ -14,7 +15,13 @@ const Profile: React.FC = () => {
             <div  key={index}
             className="h-auto md:h-[700px] rounded-lg relative">
               <div className="relative overflow-hidden group">
-                <img src={profile.image} className="w-full h-[400px] md:h-[556px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"/>
+                <Image
+                  src={profile.image}
+                  alt={profile.name}
+                  width={400}
+                  height={556}
+                  className="w-full h-[400px] md:h-[556px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
+                />
               </div>
               <div className="mt-6 mb-6">
                 <p className="">{profile.name}</p>
