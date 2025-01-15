@@ -20,20 +20,22 @@
   }
   
   .vietnam path {
-    fill: gray;
+    fill: rgb(161, 161, 161);
     stroke: #333333;
     stroke-width: 1;
     transition: fill 0.3s ease;
   }
   
   .vietnam path[data-highlight="true"] {
-    fill: #ffcc00;
+    fill: #fa913b;
     transition: fill 0.3s ease;
   }
   
   .vietnam path[data-highlight="true"]:hover {
-    fill: #ff9900;
+    fill: #fda6a6;
   }
+
+  
   
   
   

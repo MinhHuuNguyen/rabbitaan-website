@@ -4,6 +4,7 @@ import "yet-another-react-lightbox/styles.css";
 import galleryData from "../utils/gallery.json";
 import { Download, Fullscreen, Thumbnails, Zoom } from "yet-another-react-lightbox/plugins";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import Image from "next/image";
 
 const WeddingGallery = () => {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -30,9 +31,11 @@ const WeddingGallery = () => {
             className="relative overflow-hidden w-full pt-[100%] cursor-pointer"
             onClick={() => handleImageClick(index)}
           >
-            <img
+            <Image
               src={image}
               alt={`Wedding Image ${index}`}
+              width={400}
+              height={400}
               className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-500 ease-in-out transform grayscale-[50%] hover:scale-110 hover:grayscale-0"
             />
           </div>

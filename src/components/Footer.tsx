@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from "next/image";
 
 const Footer: React.FC = () => {
 
@@ -7,10 +8,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto text-center">
         {/* Circle Image with Decorative Border */}
         <div className="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto mb-6">
-          <img
-            src="https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/473740TgN/meo-anh-long-ngan-british-shorthair-624958.jpg"
-            className="w-full h-full rounded-full border-4 border-gray-300 shadow-lg object-cover"
-          />
+          <Image src="/images/LIN00151.JPG" alt='Thank you' width={400} height={300} layout="responsive"/>
           <div
             className="absolute inset-0 rounded-full border-8 border-opacity-30 border-white"
             aria-hidden="true"

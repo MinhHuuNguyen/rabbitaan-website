@@ -3,126 +3,126 @@
       "id": 1,
       "place": "Hoà Bình",
       "day": "2017",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 2,
       "place": "Phú Thọ",
       "day": "2018",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 3,
       "place": "Thanh Hoá",
       "day": "2018",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 4,
       "place": "Tuyên Quang",
       "day": "2018",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 5,
       "place": "Cao Bằng",
       "day": "2019",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 6,
       "place": "Hà Nội",
       "day": "2019",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 7,
       "place": "Sơn La",
       "day": "2020",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 8,
       "place": "Gia Lai",
       "day": "2020",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 9,
       "place": "Đắk Lắk",
       "day": "2020",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 10,
       "place": "Quảng Nam",
       "day": "2020",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 11,
-      "place": "Hồ Chí Minh",
+      "place": "TP. Hồ Chí Minh",
       "day": "2021",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 12,
       "place": "Bà Rịa Vũng Tàu",
       "day": "2021",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 13,
       "place": "Khánh Hoà",
       "day": "2022",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 14,
       "place": "Thừa Thiên Huế",
       "day": "2022",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 15,
       "place": "Bình Thuận",
       "day": "2023",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 16,
       "place": "Đà Nẵng",
       "day": "2023",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 17,
       "place": "Hải Phòng",
       "day": "2023",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 18,
       "place": "Quảng Ninh",
       "day": "2023",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 19,
       "place": "Lào Cai",
       "day": "2023",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 20,
       "place": "Hưng Yên",
       "day": "2024",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     },
     {
       "id": 21,
       "place": "Kiên Giang",
       "day": "2024",
-      "image": ["images/image3.jpg"]
+      "image": ["/images/image3.jpg"]
     }
   ]
