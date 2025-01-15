@@ -12,7 +12,6 @@ import Preloader from '@/components/Preloader';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
-  const weddingDate = new Date('2024-12-31T00:00:00');
 
   useEffect(() => {
     setTimeout(() => {
@@ -34,7 +33,7 @@ export default function Home() {
           <Timeline />
           <VietnamMap />
           <Wedding />
-          <Countdown weddingDate={weddingDate} />
+          <Countdown />
           <WeddingGallery />
           <WeddingGiftPage />
         </main>
