@@ -1,7 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap');
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -151,6 +154,71 @@ a {
 .popupEnter {
   animation: popupEnter 0.3s forwards;
 }
+
+.masonry-grid_column {
+  padding-left: 1rem; /* khoảng cách giữa các cột */
+  background-clip: padding-box;
+}
+
+.masonry-grid {
+  display: flex;
+  margin-left: -1rem; /* offset để khớp khoảng cách giữa các cột */
+  width: auto;
+}
+
+.font-great-vibes {
+  font-family: 'Great Vibes', cursive;
+}
+
+.font-dancing-script {
+  font-family: 'Dancing Script', cursive;
+}
+
+.font-pacifico {
+  font-family: 'Pacifico', cursive;
+}
+
+.font-lora {
+  font-family: 'Lora', serif;
+}
+
+h2 {
+  @apply font-great-vibes text-8xl;
+}
+
+h3 {
+  @apply font-pacifico text-4xl;
+}
+
+p {
+  @apply font-lora text-base;
+}
+
+ul li {
+  @apply font-lora text-base;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.hovered-province {
+  fill: #FF7F7F;
+  transition: fill 0.3s ease;
+}
+
+
+
 
 
 
