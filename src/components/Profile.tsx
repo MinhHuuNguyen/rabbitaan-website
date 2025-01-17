@@ -4,10 +4,10 @@ import Image from "next/image";
 
 const Profile: React.FC = () => {
   return (
-    <div id="couple" className="my-24 mx-5 w-full">
+    <div id="couple" className="my-40 mx-5 w-full h-screen">
       <div className="max-w-screen-xl mx-auto px-4">
       <div className="mb-12 text-center">
-          <h2 className="font-serif uppercase text-4xl text-[#6d4c41] mb-5">CHÚNG MÌNH</h2>
+          <h2 className="text-[#6d4c41] mb-5">Chúng mình</h2>
           {/* <p className="text-gray-600 text-base md:text-lg">We are so excited to share our special day with you!</p> */}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -23,12 +23,12 @@ const Profile: React.FC = () => {
                   className="w-full h-[400px] md:h-[556px] object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
                 />
               </div>
-              <div className="mt-6 mb-6">
-                <p className="">{profile.name}</p>
-                <p className="">Con ông {profile.father}</p>
-                <p className="">Con bà {profile.mother}</p>
-                <p className="">Tư gia: {profile.address}</p>
-                <p className="">{profile.bio}</p>
+              <div className="mt-9 mb-6">
+                <h3 className="mb-7">{profile.name}</h3>
+                <p className="mb-2">Con ông {profile.father}</p>
+                <p className="mb-5">Con bà {profile.mother}</p>
+                <p className="mb-5">Tư gia: {profile.address}</p>
+                <p className="mb-5">{profile.bio}</p>
               </div>
             </div>
           ))}

@@ -29,11 +29,11 @@ export default function Home() {
           } ${loading ? 'translate-y-10' : 'translate-y-0'} transition-all duration-700 ease-out`} 
         >
           {/* Apply fade-in and slide-up effect */}
+          <Countdown/>
           <Profile />
           <Timeline />
           <VietnamMap />
           <Wedding />
-          <Countdown />
           <WeddingGallery />
           <WeddingGiftPage />
         </main>
