@@ -60,7 +60,7 @@ const VietnamMap: React.FC = () => {
   const provincesTotal = placesData.length;
 
   return (
-    <div id="journey" className="container mx-auto my-8">
+    <div id="journey" className="container mx-auto my-40">
       <div className="text-center mb-20">
         <h2>Our Journey</h2>
       </div>

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Profile: React.FC = () => {
   return (
-    <div id="couple" className="my-24 mx-5 w-full h-screen">
+    <div id="couple" className="my-40 mx-5 w-full h-screen">
       <div className="max-w-screen-xl mx-auto px-4">
       <div className="mb-12 text-center">
           <h2 className="text-[#6d4c41] mb-5">Chúng mình</h2>
