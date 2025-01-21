@@ -40,7 +40,7 @@ const Countdown: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen">
+    <div className="relative flex flex-col items-center justify-center min-h-[830px]">
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}
@@ -50,7 +50,7 @@ const Countdown: React.FC = () => {
           delay: 3000,
           disableOnInteraction: false,
         }}
-        className="absolute inset-0 swiper-container h-screen w-full"
+        className="absolute inset-0 swiper-container h-[830px] w-full"
       >
         {banner.images.map((image, index) => (
           <SwiperSlide key={index}>
