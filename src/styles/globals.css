@@ -221,28 +221,26 @@ ul li {
   transition: fill 0.3s ease;
 }
 
-.custom-swiper-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(236, 137, 137, 0.877);
-  color: rgb(233, 144, 144);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  content: "";
 }
 
-.swiper-button-prev.custom-swiper-button {
-  left: -20px;
+.swiper-button-prev,
+.swiper-button-next {
+  font-size: 14px !important;
+  color: #FF7F7F !important;
+  display: none;
 }
 
-.swiper-button-next.custom-swiper-button {
-  right: -20px;
+.swiper-button-prev {
+  left: 0 !important;
+  margin-left: 20px;
+}
+
+.swiper-button-next {
+  right: 0 !important;
+  margin-right: 20px ;
 }
 
 
