@@ -16,8 +16,8 @@ const WeddingBox: React.FC = () => {
   return (
     <div id="gifts" className="bg-floralwhite py-8 flex justify-center">
       <div className="max-w-4xl w-full">
-        <div className="mb-12 text-center uppercase">
-          <h2 className="font-serif text-4xl text-[#6d4c41] mb-5">HÒM MỪNG CƯỚI</h2>
+        <div className="mb-12 text-center">
+          <h2 className="text-[#6d4c41] mb-5">Hòm mừng cưới</h2>
         </div>
         <div className="flex flex-wrap gap-6 justify-center">
           {weddingData.map((item) => (

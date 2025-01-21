@@ -15,18 +15,6 @@
   margin-bottom: 50px;
 }
 
-.sectionTitle h2 {
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  color: #4a4a4a;
-  font-size: 24px;
-  letter-spacing: 2px;
-  line-height: 30px;
-  margin: 20px 0;
-  text-transform: uppercase;
-}
-
 .eventContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -35,6 +23,7 @@
 
 .cardItem {
   overflow: hidden;
+  background: gray;
 }
 
 .card:hover {
