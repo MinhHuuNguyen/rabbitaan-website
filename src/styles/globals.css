@@ -203,12 +203,11 @@ ul li {
   @apply font-lora text-base;
 }
 
-.truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.auto-shrink-text {
+  font-size: clamp(8px, 14px, 18px);
   display: block;
-  max-width: 100%;
+  text-align: center;
+  white-space: nowrap; 
 }
 
 .grid {
@@ -221,6 +220,31 @@ ul li {
   fill: #FF7F7F;
   transition: fill 0.3s ease;
 }
+
+.custom-swiper-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(236, 137, 137, 0.877);
+  color: rgb(233, 144, 144);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.swiper-button-prev.custom-swiper-button {
+  left: -20px;
+}
+
+.swiper-button-next.custom-swiper-button {
+  right: -20px;
+}
+
 
 
 

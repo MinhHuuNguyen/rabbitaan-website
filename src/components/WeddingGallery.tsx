@@ -26,12 +26,12 @@ const WeddingGallery = () => {
   return (
     <section id="gallery" className="my-20 w-full">
       {/* Gallery */}
-      <div className="max-w-screen-xl mx-auto px-4">
+      <div className="max-w-screen-xl mx-auto">
         <div className="mb-12 text-center">
           <h2>Album ảnh cưới</h2>
         </div>
       </div>
-      <div className="columns-1 sm:columns-2 lg:columns-3 py-10 md:py-20 gap-4 max-w-screen-xl mx-auto">
+      <div className="columns-1 sm:columns-2 md:columns-3 xl:columns-5 py-10 gap-4 max-w-screen-3xl mx-auto px-8">
         {galleryData.images.map((image, index) => (
           <div
             key={index}
@@ -78,7 +78,7 @@ const WeddingGallery = () => {
       <Modal
         isOpen={isOpen}
         onRequestClose={closeModal}
-         className="relative w-11/12 md:w-3/4 lg:w-2/3 xl:w-1/2 p-4 bg-white rounded mx-auto mt-20"
+        className="relative w-11/12 md:w-3/4 lg:w-2/3 xl:w-9/12 p-3 bg-white rounded mx-auto my-auto"
         overlayClassName="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center"
       >
         {/* Nút đóng modal */}
