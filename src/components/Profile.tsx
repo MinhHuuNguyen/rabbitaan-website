@@ -8,7 +8,7 @@ import textStyles from '../styles/Text.module.css';
 
 const Profile: React.FC = () => {
   return (
-    <div id="couple" className="container">
+    <div id="couple" className="myContainer myContainerPad">
       <div className={`${textStyles.title}`}>Chúng mình là ...</div>
       <div className="grid grid-cols-2">
         {profileData.map((profile, index) => (
@@ -21,7 +21,7 @@ const Profile: React.FC = () => {
                 height={0}
                 layout="responsive"
                 quality={100}
-                style={{ minHeight: "88vh", maxHeight: "88vh" }}
+                style={{ minHeight: "86vh", maxHeight: "86vh" }}
                 className="object-cover transition-transform group-hover:scale-110"
                 />
             </Stack>

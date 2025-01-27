@@ -62,10 +62,10 @@ const VietnamMap: React.FC = () => {
   const provincesTotal = tripsData.length;
 
   return (
-    <div id="journey" className="container">
+    <div id="journey" className="myContainer myContainerPad">
       <div className={`${textStyles.title}`}>Những chuyến đi...</div>
       <div className={`${textStyles.sub1} text-center`}>Bọn mình đã đi được {provincesTotal} tỉnh thành</div>
-      <div className="flex" style={{ minHeight: "86vh", maxHeight: "86vh" }}>
+      <div className="flex" style={{ minHeight: "80vh", maxHeight: "80vh" }}>
         {/* Map Container */}
         <div className="w-1/4">
             <div

@@ -46,7 +46,7 @@ const OurWedding: React.FC = () => {
   };
 
   return (
-    <div id="wedding" className="container">
+    <div id="wedding" className="myContainer myContainerPad">
       <div className={`${textStyles.title}`}>Lịch trình đám cưới...</div>
       <div className="justify-center relative items-center">
         <div className="swiper-button-prev"><i className="ri-arrow-right-s-line"></i></div>
@@ -77,7 +77,7 @@ const OurWedding: React.FC = () => {
                     height={0}
                     layout="responsive"
                     quality={100}
-                    style={{ minHeight: "60vh", maxHeight: "60vh" }}
+                    style={{ minHeight: "59vh", maxHeight: "59vh" }}
                     className="object-cover transition-transform group-hover:scale-110"
                   />
                 </Stack>
