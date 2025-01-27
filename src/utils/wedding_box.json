@@ -1,14 +1,16 @@
 [
   {
-    "id": 1,
-    "title": "NHÀ TRAI",
-    "accountNumber": "0021000464210",
-    "qrCode": "/images/qr_vcb.jpg"
-  },
-  {
-    "id": 2,
     "title": "NHÀ GÁI",
     "accountNumber": "2020199798888",
-    "qrCode": "/images/qr_vcb.jpg"
+    "accountName": "Lâm Thảo Anh",
+    "bankName": "MB Bank",
+    "qrCode": "/qr/qr_vcb.jpeg"
+  },
+  {
+    "title": "NHÀ TRAI",
+    "accountName": "Nguyễn Hữu Minh",
+    "bankName": "Vietcombank",
+    "accountNumber": "0021000464210",
+    "qrCode": "/qr/qr_vcb.jpeg"
   }
 ]

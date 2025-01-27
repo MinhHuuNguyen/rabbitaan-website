@@ -4,9 +4,11 @@ import Modal from "react-modal";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import galleryData from "../utils/gallery.json";
-import { Download, Fullscreen, Thumbnails, Zoom } from "yet-another-react-lightbox/plugins";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Image from "next/image";
+import { Stack } from "@mui/material";
+
+import textStyles from '../styles/Text.module.css';
 
 const WeddingGallery = () => {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -24,54 +26,68 @@ const WeddingGallery = () => {
   };
 
   return (
-    <section id="gallery" className="my-20 w-full">
+    <section id="gallery" >
       {/* Gallery */}
-      <div className="max-w-screen-xl mx-auto">
-        <div className="mb-12 text-center">
-          <h2>Album ảnh cưới</h2>
+      <div className="myContainer myContainerPad">
+        <div className={`${textStyles.title}`}>Bộ ảnh cưới nè...</div>
+        <div className="columns-4 sm:columns-5 md:columns-6 xl:columns-7">
+          {galleryData.images.map((image, index) => (
+            <Stack
+              key={index}
+              className="mb-4 break-inside-avoid cursor-pointer overflow-hidden group"
+              sx={{ borderRadius: "20px" }}
+              onClick={() => handleImageClick(index)}
+            >
+              <Image
+                src={image}
+                alt={`Wedding Image ${index}`}
+                width={0}
+                height={0}
+                layout="responsive"
+                quality={100}
+                className="w-full group-hover:scale-110"
+              />
+            </Stack>
+          ))}
         </div>
-      </div>
-      <div className="columns-1 sm:columns-2 md:columns-3 xl:columns-5 py-10 gap-4 max-w-screen-3xl mx-auto px-8">
-        {galleryData.images.map((image, index) => (
-          <div
-            key={index}
-            className="mb-4 break-inside-avoid cursor-pointer"
-            onClick={() => handleImageClick(index)}
-          >
-            <Image
-              src={image}
-              alt={`Wedding Image ${index}`}
-              width={400}
-              height={400}
-              className="w-full object-cover rounded-lg shadow-lg"
-            />
-          </div>
-        ))}
       </div>
 
       {/* Video */}
-      <div className="relative flex items-center justify-center h-screen bg-[url('https://lirp.cdn-website.com/28cd0bb4/dms3rep/multi/opt/traditional+american+wedding-1920w.jpeg')] bg-cover bg-center">
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="relative text-center z-10 flex flex-col items-center">
-          <h2 className="text-4xl text-white font-bold mb-4">Xem video cưới của chúng tôi</h2>
-          <p className="text-lg text-white mb-8">
-            Tình yêu không làm thế giới quay tròn. Tình yêu là những gì làm cho chuyến đi đáng giá.
-          </p>
+      <div className="myHalfContainer ">
+        <Image
+          src="/gallery/video_background.JPEG"
+          alt="video_background"
+          width={0}
+          height={0}
+          layout="responsive"
+          quality={100}
+          style={{ maxHeight: "65vh", width: "100vw"}}
+          className="object-cover transition-transform group-hover:scale-110"
+        />
+        <Stack
+          sx={{
+            display: "flex",
+            backdropFilter: "blur(10px)",
+            backgroundColor: "rgba(255, 255, 255, 0.33)",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "65vh",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div className={`${textStyles.title}`}>Video của chúng mình...</div>
           <button
             onClick={openModal}
-            className="flex items-center justify-center w-16 h-16 border-2 border-white rounded-full shadow-lg hover:scale-110 transform transition-all duration-300 bg-transparent"
+            className="border-2 rounded-full hover:scale-110 transform transition-all duration-300 bg-gray-100 w-24 h-24"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-8 h-8 text-white"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
               <path d="M9.75 16.5v-9l6 4.5-6 4.5z" />
             </svg>
           </button>
-
-        </div>
+        </Stack>
       </div>
 
       {/* Modal Video */}
@@ -91,10 +107,9 @@ const WeddingGallery = () => {
 
         {/* Video YouTube */}
         <iframe
-          className="w-full h-[400px] md:h-[500px] lg:h-[600px] xl:h-[700px]"
+          className="w-full h-[600px] md:h-[700px] lg:h-[800px] xl:h-[900px]"
           src="https://www.youtube.com/embed/a7fzkqLozwA?si=ep12eBz6Z8wFRhCl"
           title="Wedding Video"
-          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         ></iframe>
@@ -103,7 +118,6 @@ const WeddingGallery = () => {
       {/* Lightbox */}
       {isLightboxOpen && (
         <Lightbox
-          plugins={[Download, Fullscreen, Zoom, Thumbnails]}
           slides={images}
           open={isLightboxOpen}
           close={() => setIsLightboxOpen(false)}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import Layout from '../components/layout';
 import styles from '../styles/Home.module.css';
+import Layout from '@/components/Layout';
 import Countdown from '@/components/Countdown';
 import Wedding from '@/components/Wedding';
 import Profile from '@/components/Profile';
@@ -31,11 +31,11 @@ export default function Home() {
           {/* Apply fade-in and slide-up effect */}
           <Countdown />
           <Profile />
-          <Timeline />
           <VietnamMap />
           <Wedding />
-          <WeddingGallery />
           <WeddingGiftPage />
+          <WeddingGallery />
+          <Timeline />
         </main>
       </div>
     </Layout>
