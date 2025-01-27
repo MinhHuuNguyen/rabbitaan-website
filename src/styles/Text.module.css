@@ -1,0 +1,27 @@
+.title {
+    font-weight: bold;
+    font-size: min(8vw, 8vh);
+    font-family: 'Great Vibes', cursive;
+    color: #333333;
+    text-align: center;
+}
+
+.sub1 {
+    font-weight: bold;
+    font-size: min(3vw, 3vh);
+    font-family: 'Alex Brush', cursive;
+    margin: auto;
+    padding: auto;
+}
+
+.sub2 {
+    font-weight: bold;
+    font-size: min(2vw, 2vh);
+    font-family: 'Alex Brush', cursive;
+    margin: auto;
+    padding: auto;
+}
+
+.shrink {
+    font-size: clamp(8px, 14px, 18px);
+}
