@@ -1,24 +1,20 @@
-{
-  "title": "Cô Dâu Chú Rể",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada aliquam nunc a pharetra. Pellentesque sit amet placerat magna.",
-  "couples": [
-    {
-      "role": "CÔ DÂU",
-      "name": "LÂM THẢO ANH",
-      "father": "Lâm Văn Nguyên",
-      "mother": "Phạm Thị Hà",
-      "address": "Đường Đình Từ, thôn Lục Bắc, xã Thái Xuyên, huyện Thái Thuỵ, Thái Bình",
-      "image": "/profile/crop/Tho.jpeg",
-      "bio": "Ut malesuada sed est sed porttitor. Vestibulum quis turpis at lacus commodo elementum sit amet et mauris. In non ligula facilisis."
-    },
-    {
-      "role": "CHÚ RỂ",
-      "name": "NGUYỄN HỮU MINH",
-      "father": "Nguyễn Hữu Thịnh",
-      "mother": "Võ Thị Thanh Thuỷ",
-      "address": "Số nhà 15A, ngõ 191, phố Khương Thượng, quận Đống Đa, Hà Nội",
-      "image": "/profile/crop/Minh.jpeg",
-      "bio": "Sed tempor purus neque, luctus rutrum libero posuere quis. Sed sit amet nisl quam. Mauris elit enim, imperdiet a mollis ac, vestibulum scelerisque est."
-    }
-  ]
-}
+[
+  {
+    "role": "CÔ DÂU",
+    "name": "LÂM THẢO ANH",
+    "father": "Lâm Văn Nguyên",
+    "mother": "Phạm Thị Hà",
+    "address": "Đường Đình Từ, Lục Bắc, Thái Xuyên, Thái Thuỵ, Thái Bình",
+    "image": "/profile/crop/Tho.jpeg",
+    "bio": "Ut malesuada sed est sed porttitor. Vestibulum quis turpis at lacus commodo elementum sit amet et mauris."
+  },
+  {
+    "role": "CHÚ RỂ",
+    "name": "NGUYỄN HỮU MINH",
+    "father": "Nguyễn Hữu Thịnh",
+    "mother": "Võ Thị Thanh Thuỷ",
+    "address": "Số nhà 15A, ngõ 191, Khương Thượng, Đống Đa, Hà Nội",
+    "image": "/profile/crop/Minh.jpeg",
+    "bio": "Ut malesuada sed est sed porttitor. Vestibulum quis turpis at lacus commodo elementum sit amet et mauris."
+  }
+]

@@ -11,7 +11,7 @@ const Profile: React.FC = () => {
     <div id="couple" className="container">
       <div className={`${textStyles.title}`}>Chúng mình là ...</div>
       <div className="grid grid-cols-2">
-        {profileData.couples.map((profile, index) => (
+        {profileData.map((profile, index) => (
           <Stack key={index} className="w-full h-full" sx={{ position: "relative"}}>
             <Stack className="overflow-hidden group" sx={{ borderRadius: "40px" }}>
               <Image
@@ -33,12 +33,13 @@ const Profile: React.FC = () => {
               right: 0,
               bottom: 0,
               minHeight: "20%",
-              borderRadius: "30px"
+              borderRadius: "30px",
+              padding: "10px",
             }}>
-                <p className={`${textStyles.sub1} text-white`}>{profile.name}</p>
-                <p className={`${textStyles.sub2} text-white`}>Con ông {profile.father} Con bà {profile.mother}</p>
-                <p className={`${textStyles.sub2} text-white`}>Tư gia {profile.address}</p>
-                <p className={`${textStyles.sub2} text-white`}>{profile.bio}</p>
+              <p className={`${textStyles.sub1} text-white text-justify`}>{profile.name}</p>
+              <p className={`${textStyles.sub2} text-white text-justify`}>Con ông {profile.father} và bà {profile.mother}</p>
+              <p className={`${textStyles.sub2} text-white text-justify`}>Tư gia {profile.address}</p>
+              <p className={`${textStyles.sub2} text-white text-justify`}>{profile.bio}</p>
             </Stack>
           </Stack>
         ))}

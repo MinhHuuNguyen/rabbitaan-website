@@ -11,23 +11,31 @@
 .sub1 {
     font-weight: bold;
     font-size: min(3vw, 3vh);
-    font-family: 'Alex Brush', cursive;
+    font-family: "Coiny", cursive;
     margin: auto;
     padding: auto;
 }
 
 .sub2 {
-    font-weight: bold;
     font-size: min(2vw, 2vh);
-    font-family: 'Alex Brush', cursive;
-    margin: 1px;
-    padding: 1px;
+    font-family: "Borel", cursive;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 5px;
+    line-height: 1.5;
 }
 
 .sub3 {
-    font-weight: bold;
-    font-size: min(1vw, 1vh);
-    font-family: 'Alex Brush', cursive;
-    margin: auto;
-    padding: auto;
+    font-size: min(2vw, 2vh);
+    font-family: "Borel", cursive;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 1px;
+    line-height: 1;
+}
+
+.wedding {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }

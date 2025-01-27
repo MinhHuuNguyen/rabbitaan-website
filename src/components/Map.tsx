@@ -148,7 +148,7 @@ const VietnamMap: React.FC = () => {
                 />
               </Stack>
               <p className={`${textStyles.sub2} text-center`}>{place.place}</p>
-              <p className={`${textStyles.sub2} text-center`}>{place.day}</p>
+              <p className={`${textStyles.sub3} text-center`}>{place.day}</p>
             </Stack>
           ))}
         </div>
