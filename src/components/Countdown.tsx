@@ -50,7 +50,7 @@ const Countdown: React.FC = () => {
           delay: 3000,
           disableOnInteraction: false,
         }}
-        className="absolute inset-0 swiper-container h-[830px] w-full"
+        className="absolute inset-0 swiper-container h-[915px] w-full"
       >
         {banner.images.map((image, index) => (
           <SwiperSlide key={index}>
