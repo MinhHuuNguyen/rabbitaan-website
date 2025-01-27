@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import styles from "../styles/Wedding.module.css";
 import eventsData from "../utils/our_wedding.json";
 import Image from "next/image";
@@ -44,13 +44,25 @@ const OurWedding: React.FC = () => {
   };
 
   return (
-    <div id="wedding" className="py-16 bg-gray-100">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-[#6d4c41] mb-5">Sự kiện cưới</h2>
+    <div id="wedding" className=" py-16 bg-gray-100 relative align-middle">
+      <div className="text-center mb-12">
+        <h2 className="text-[#6d4c41] mb-5">Sự kiện cưới</h2>
+      </div>
+      <div className="justify-center relative items-center">
+        <div className="swiper-button-prev">
+          <i className="ri-arrow-right-s-line"></i>
         </div>
+
+        <div className="swiper-button-next">
+          <i className="ri-arrow-left-s-line"></i>
+        </div>
+
         <Swiper
-          modules={[Pagination, Autoplay]}
+          modules={[Navigation, Pagination, Autoplay]}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
           spaceBetween={20}
           slidesPerView={3}
           autoplay={{
@@ -62,13 +74,13 @@ const OurWedding: React.FC = () => {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
-          className="event-slider"
+          className="container mx-auto"
         >
           {events.map((event, index) => (
             <SwiperSlide key={index}>
               <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div className="relative overflow-hidden group">
-                <Image
+                  <Image
                     src={event.image}
                     alt={event.title}
                     width={400}
@@ -119,7 +131,6 @@ const OurWedding: React.FC = () => {
           ))}
         </Swiper>
       </div>
-
       {/* Popup Modal */}
       <Modal
         isOpen={isModalOpen}

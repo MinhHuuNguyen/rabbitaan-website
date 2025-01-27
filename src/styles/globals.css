@@ -203,12 +203,11 @@ ul li {
   @apply font-lora text-base;
 }
 
-.truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.auto-shrink-text {
+  font-size: clamp(8px, 14px, 18px);
   display: block;
-  max-width: 100%;
+  text-align: center;
+  white-space: nowrap; 
 }
 
 .grid {
@@ -221,6 +220,29 @@ ul li {
   fill: #FF7F7F;
   transition: fill 0.3s ease;
 }
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  content: "";
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  font-size: 14px !important;
+  color: #FF7F7F !important;
+  display: none;
+}
+
+.swiper-button-prev {
+  left: 0 !important;
+  margin-left: 20px;
+}
+
+.swiper-button-next {
+  right: 0 !important;
+  margin-right: 20px ;
+}
+
 
 
 

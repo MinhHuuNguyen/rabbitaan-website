@@ -22,10 +22,10 @@ const VietnamMap: React.FC = () => {
       .then((data) => {
         const provinces = placesData.map((item) => item.place);
         setHighlightedProvinces(provinces);
-  
+
         const parser = new DOMParser();
         const svgDoc = parser.parseFromString(data, "image/svg+xml");
-  
+
         svgDoc.querySelectorAll('path').forEach((path) => {
           const provinceName = path.getAttribute('title');
           if (provinceName && provinces.includes(provinceName)) {
@@ -34,7 +34,7 @@ const VietnamMap: React.FC = () => {
             path.setAttribute('data-province', provinceName); // Add a unique identifier
           }
         });
-  
+
         const updatedSvg = new XMLSerializer().serializeToString(svgDoc);
         setSvgContent(updatedSvg);
       })
@@ -105,13 +105,22 @@ const VietnamMap: React.FC = () => {
               className={`w-24 h-24 rounded-full text-center cursor-pointer ${hoveredProvince === place.place ? 'ring-4 ring-yellow-400' : ''
                 }`}
               onClick={() => handleCircularImageClick(place.place)}
-              onMouseOver={() => {
-                setHoveredMap(place.place);
-                const svgDoc = new DOMParser().parseFromString(svgContent, "image/svg+xml");
-                const path = svgDoc.querySelector(`path[data-province="${place.place}"]`);
-                if (path) {
-                  path.classList.add(map.hoveredProvince);
-                  setSvgContent(new XMLSerializer().serializeToString(svgDoc));
+              onMouseOver={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const isMouseInside =
+                  e.clientX >= rect.left &&
+                  e.clientX <= rect.right &&
+                  e.clientY >= rect.top &&
+                  e.clientY <= rect.bottom;
+
+                if (isMouseInside) {
+                  setHoveredMap(place.place);
+                  const svgDoc = new DOMParser().parseFromString(svgContent, "image/svg+xml");
+                  const path = svgDoc.querySelector(`path[data-province="${place.place}"]`);
+                  if (path) {
+                    path.classList.add(map.hoveredProvince);
+                    setSvgContent(new XMLSerializer().serializeToString(svgDoc));
+                  }
                 }
               }}
               onMouseOut={() => {
@@ -131,11 +140,14 @@ const VietnamMap: React.FC = () => {
                 height={96}
                 className="w-24 h-24 rounded-full border-2 border-gray-300 hover:scale-110 hover:shadow-md transition"
               />
-              <span className="font-lora font-bold block mt-2 text-sm text-black-600 truncate">{place.place}</span>
+              <span className="font-lora font-bold mt-2 text-black-600 auto-shrink-text">
+                {place.place}
+              </span>
               <span className="block font-bold text-xs text-gray-500">{place.day}</span>
             </div>
           ))}
         </div>
+
 
         {isLightboxOpen && (
           <Lightbox
