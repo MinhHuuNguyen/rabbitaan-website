@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
-import map from "../styles/VietnamMap.module.css";
-import placesData from '../utils/trips.json';
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
-import { Download, Fullscreen, Zoom, Thumbnails } from 'yet-another-react-lightbox/plugins';
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
+import 'yet-another-react-lightbox/styles.css';
+import Lightbox from "yet-another-react-lightbox";
+import { useEffect, useState } from 'react';
+import { Stack } from "@mui/material";
 import Image from "next/image";
+
+import mapStyles from "../styles/VietnamMap.module.css";
+import textStyles from '../styles/Text.module.css';
+import tripsData from '../utils/trips.json';
 
 const VietnamMap: React.FC = () => {
   const [svgContent, setSvgContent] = useState<string>('');
@@ -20,7 +22,7 @@ const VietnamMap: React.FC = () => {
     fetch('/vietnam.svg')
       .then((response) => response.text())
       .then((data) => {
-        const provinces = placesData.map((item) => item.place);
+        const provinces = tripsData.map((item) => item.place);
         setHighlightedProvinces(provinces);
 
         const parser = new DOMParser();
@@ -29,7 +31,7 @@ const VietnamMap: React.FC = () => {
         svgDoc.querySelectorAll('path').forEach((path) => {
           const provinceName = path.getAttribute('title');
           if (provinceName && provinces.includes(provinceName)) {
-            path.classList.add(map.vietnam);
+            path.classList.add(mapStyles.vietnam);
             path.setAttribute('data-highlight', 'true');
             path.setAttribute('data-province', provinceName); // Add a unique identifier
           }
@@ -42,7 +44,7 @@ const VietnamMap: React.FC = () => {
   }, []);
 
   const handleProvinceClick = (provinceName: string) => {
-    const provinceData = placesData.find(item => item.place === provinceName);
+    const provinceData = tripsData.find(item => item.place === provinceName);
     if (provinceData) {
       setSelectedProvinceImages(provinceData.image);
       setIsLightboxOpen(true);
@@ -57,19 +59,17 @@ const VietnamMap: React.FC = () => {
     setIsLightboxOpen(false);
   };
 
-  const provincesTotal = placesData.length;
+  const provincesTotal = tripsData.length;
 
   return (
-    <div id="journey" className="container mx-auto my-40">
-      <div className="text-center mb-20">
-        <h2>Our Journey</h2>
-      </div>
-      <div className="flex flex-col md:flex-row gap-8 p-4">
+    <div id="journey" className="container">
+      <div className={`${textStyles.title}`}>Những chuyến đi...</div>
+      <div className={`${textStyles.sub1} text-center`}>Bọn mình đã đi được {provincesTotal} tỉnh thành</div>
+      <div className="flex" style={{ minHeight: "86vh", maxHeight: "86vh" }}>
         {/* Map Container */}
-        <div className="md:w-1/3 flex justify-center items-center">
-          <div className="relative p-4">
+        <div className="w-1/4">
             <div
-              className={`${map.vietnam} `}
+              className={`${mapStyles.vietnam}`}
               dangerouslySetInnerHTML={{ __html: svgContent }}
               onClick={(event) => {
                 const target = event.target as SVGElement;
@@ -93,65 +93,69 @@ const VietnamMap: React.FC = () => {
                 setHoveredProvince(null);
               }}
             />
-            <p className="text-lg mt-10 text-center font-semibold">Bọn mình đã đi được {provincesTotal} tỉnh thành</p>
-          </div>
         </div>
-
         {/* Circular Images Container */}
-        <div className="md:w-2/3 grid gap-6">
-          {placesData.map((place, index) => (
-            <div
-              key={index}
-              className={`w-24 h-24 rounded-full text-center cursor-pointer ${hoveredProvince === place.place ? 'ring-4 ring-yellow-400' : ''
+        <div className="w-3/4 grid grid-cols-6">
+          {tripsData.map((place, index) => (
+            <Stack>
+              <Stack
+                key={index}
+                className={`
+                  w-full
+                  overflow-hidden
+                  group
+                  ${hoveredProvince === place.place ? 'ring-4 ring-yellow-500' : ''
                 }`}
-              onClick={() => handleCircularImageClick(place.place)}
-              onMouseOver={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const isMouseInside =
-                  e.clientX >= rect.left &&
-                  e.clientX <= rect.right &&
-                  e.clientY >= rect.top &&
-                  e.clientY <= rect.bottom;
-
-                if (isMouseInside) {
-                  setHoveredMap(place.place);
+                sx={{ borderRadius: "50px", marginTop: "10px", padding: "1px" }}
+                onClick={() => handleCircularImageClick(place.place)}
+                onMouseOver={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const isMouseInside =
+                    e.clientX >= rect.left &&
+                    e.clientX <= rect.right &&
+                    e.clientY >= rect.top &&
+                    e.clientY <= rect.bottom;
+  
+                  if (isMouseInside) {
+                    setHoveredMap(place.place);
+                    const svgDoc = new DOMParser().parseFromString(svgContent, "image/svg+xml");
+                    const path = svgDoc.querySelector(`path[data-province="${place.place}"]`);
+                    if (path) {
+                      path.classList.add(mapStyles.hoveredProvince);
+                      setSvgContent(new XMLSerializer().serializeToString(svgDoc));
+                    }
+                  }
+                }}
+                onMouseOut={() => {
+                  setHoveredMap(null);
                   const svgDoc = new DOMParser().parseFromString(svgContent, "image/svg+xml");
                   const path = svgDoc.querySelector(`path[data-province="${place.place}"]`);
                   if (path) {
-                    path.classList.add(map.hoveredProvince);
+                    path.classList.remove(mapStyles.hoveredProvince);
                     setSvgContent(new XMLSerializer().serializeToString(svgDoc));
                   }
-                }
-              }}
-              onMouseOut={() => {
-                setHoveredMap(null);
-                const svgDoc = new DOMParser().parseFromString(svgContent, "image/svg+xml");
-                const path = svgDoc.querySelector(`path[data-province="${place.place}"]`);
-                if (path) {
-                  path.classList.remove(map.hoveredProvince);
-                  setSvgContent(new XMLSerializer().serializeToString(svgDoc));
-                }
-              }}
-            >
-              <Image
-                src={place.image[0]}
-                alt={place.place}
-                width={96}
-                height={96}
-                className="w-24 h-24 rounded-full border-2 border-gray-300 hover:scale-110 hover:shadow-md transition"
-              />
-              <span className="font-lora font-bold mt-2 text-black-600 auto-shrink-text">
-                {place.place}
-              </span>
-              <span className="block font-bold text-xs text-gray-500">{place.day}</span>
-            </div>
+                }}
+              >
+                <Image
+                  src={place.image[0]}
+                  alt={place.place}
+                  width={0}
+                  height={0}
+                  layout="responsive"
+                  quality={100}
+                  style={{ minHeight: "12vh", maxHeight: "12vh" }}
+                  className="object-cover transition-transform hover:scale-110 hover:'ring-4 ring-yellow-500' transition"
+                />
+              </Stack>
+              <p className={`${textStyles.sub2} text-center`}>{place.place}</p>
+              <p className={`${textStyles.sub2} text-center`}>{place.day}</p>
+            </Stack>
           ))}
         </div>
 
 
         {isLightboxOpen && (
           <Lightbox
-            plugins={[Download, Fullscreen, Zoom, Thumbnails]}
             slides={selectedProvinceImages.map((image) => ({ src: image }))}
             open={isLightboxOpen}
             close={closeLightbox}

@@ -3,126 +3,126 @@
     "id": 1,
     "place": "Hoà Bình",
     "day": "2017",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2017_1_Hoa_Binh.jpeg"]
   },
   {
     "id": 2,
     "place": "Phú Thọ",
     "day": "2018",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2018_2_Phu_Tho.jpeg"]
   },
   {
     "id": 3,
     "place": "Thanh Hoá",
     "day": "2018",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2018_3_Thanh_Hoa.jpeg"]
   },
   {
     "id": 4,
     "place": "Tuyên Quang",
     "day": "2018",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2018_4_Tuyen_Quang.jpeg"]
   },
   {
     "id": 5,
     "place": "Cao Bằng",
     "day": "2019",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2019_5_Cao_Bang.jpeg"]
   },
   {
     "id": 6,
     "place": "Hà Nội",
     "day": "2019",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2019_6_Ha_Noi.jpeg"]
   },
   {
     "id": 7,
     "place": "Sơn La",
     "day": "2020",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2020_7_Son_La.jpeg"]
   },
   {
     "id": 8,
     "place": "Gia Lai",
     "day": "2020",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2020_8_Gia_Lai.jpeg"]
   },
   {
     "id": 9,
     "place": "Đắk Lắk",
     "day": "2020",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2020_9_Dak_Lak.jpeg"]
   },
   {
     "id": 10,
     "place": "Quảng Nam",
     "day": "2020",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2020_10_Quang_Nam.jpeg"]
   },
   {
     "id": 11,
-    "place": "Hồ Chí Minh",
+    "place": "TP. Hồ Chí Minh",
     "day": "2021",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2021_11_TP_Ho_Chi_Minh.jpeg"]
   },
   {
     "id": 12,
     "place": "Bà Rịa Vũng Tàu",
     "day": "2021",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2021_12_Ba_Ria_Vung_Tau.jpeg"]
   },
   {
     "id": 13,
     "place": "Khánh Hoà",
     "day": "2022",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2022_13_Khanh_Hoa.jpeg"]
   },
   {
     "id": 14,
     "place": "Thừa Thiên Huế",
     "day": "2022",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2022_14_Thua_Thien_Hue.jpeg"]
   },
   {
     "id": 15,
     "place": "Bình Thuận",
     "day": "2023",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2023_15_Binh_Thuan.jpeg"]
   },
   {
     "id": 16,
     "place": "Đà Nẵng",
     "day": "2023",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2023_16_Da_Nang.jpeg"]
   },
   {
     "id": 17,
     "place": "Hải Phòng",
     "day": "2023",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2023_17_Hai_Phong.jpeg"]
   },
   {
     "id": 18,
     "place": "Quảng Ninh",
     "day": "2023",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2023_18_Quang_Ninh.jpeg"]
   },
   {
     "id": 19,
     "place": "Lào Cai",
     "day": "2023",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2023_19_Lao_Cai.jpeg"]
   },
   {
     "id": 20,
     "place": "Hưng Yên",
     "day": "2024",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2024_20_Hung_Yen.jpeg"]
   },
   {
     "id": 21,
     "place": "Kiên Giang",
     "day": "2024",
-    "image": ["images/image3.jpg"]
+    "image": ["/trips/crop/2024_21_Kien_Giang.jpeg"]
   }
 ]

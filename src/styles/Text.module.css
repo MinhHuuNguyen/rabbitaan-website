@@ -4,6 +4,8 @@
     font-family: 'Great Vibes', cursive;
     color: #333333;
     text-align: center;
+    margin: auto;
+    padding: auto;
 }
 
 .sub1 {
@@ -18,10 +20,14 @@
     font-weight: bold;
     font-size: min(2vw, 2vh);
     font-family: 'Alex Brush', cursive;
-    margin: auto;
-    padding: auto;
+    margin: 1px;
+    padding: 1px;
 }
 
-.shrink {
-    font-size: clamp(8px, 14px, 18px);
+.sub3 {
+    font-weight: bold;
+    font-size: min(1vw, 1vh);
+    font-family: 'Alex Brush', cursive;
+    margin: auto;
+    padding: auto;
 }
