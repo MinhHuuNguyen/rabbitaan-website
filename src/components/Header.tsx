@@ -1,5 +1,6 @@
 import { useState } from "react";
-import navItems from "../utils/navbar.json"; // Import tệp JSON (nếu đặt trong thư mục utils)
+import navItems from "../utils/navbar.json";
+import textStyles from '../styles/Text.module.css';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,18 +37,14 @@ const Header = () => {
             </div>
             <div className="flex-1 flex items-center justify-between">
               <div className="flex-1 flex flex-col items-center sm:items-start justify-center">
-                <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-black font-great-vibes text-center my-5">
-                Minh và Thảo Anh <i className="fa fa-heart fa-1x text-red-400"></i> 
+                <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-black font-great-vibes">
+                  Minh và Thảo Anh <i className="fa fa-heart fa-1x text-red-400"></i> 
                 </h1>
               </div>
-              <div className="hidden md:ml-6 md:block">
-                <div className="flex justify-center gap-10">
+              <div className="hidden md:block">
+                <div className="flex gap-10">
                   {navItems.map((item, index) => (
-                    <a
-                      key={index}
-                      href={item.href}
-                      className="rounded-md px-3 py-2 text-lg font-semibold hover:text-[#f98d8a]"
-                    >
+                    <a key={index} href={item.href} className={`${textStyles.sub2} rounded-md hover:text-[#f98d8a]`}>
                       {item.label}
                     </a>
                   ))}
@@ -60,7 +57,7 @@ const Header = () => {
         {/* Mobile Sidebar */}
         <div className="sm:hidden">
           <div
-            className={`fixed top-0 left-0 h-full w-60 bg-white text-black z-40 transform ${isOpen ? "translate-x-0" : "-translate-x-full"
+            className={`fixed top-0 left-0 h-full w-60 bg-white z-40 transform ${isOpen ? "translate-x-0" : "-translate-x-full"
               } transition-transform duration-300`}
           >
             <button
@@ -72,10 +69,7 @@ const Header = () => {
             <ul className="flex flex-col h-full gap-5 p-5 border-r border-gray-300">
               {navItems.map((item, index) => (
                 <li key={index}>
-                  <a
-                    href={item.href}
-                    className="text-black font-semibold text-base hover:text-[#f98d8a]"
-                  >
+                  <a href={item.href} className={`${textStyles.sub2} rounded-md hover:text-[#f98d8a]`}>
                     {item.label}
                   </a>
                 </li>

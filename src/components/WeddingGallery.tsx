@@ -61,12 +61,11 @@ const WeddingGallery = () => {
           height={0}
           layout="responsive"
           quality={100}
-          style={{ maxHeight: "65vh", width: "100vw"}}
+          style={{ minHeight: "65vh", maxHeight: "65vh", width: "100vw"}}
           className="object-cover transition-transform group-hover:scale-110"
         />
         <Stack
           sx={{
-            display: "flex",
             backdropFilter: "blur(10px)",
             backgroundColor: "rgba(255, 255, 255, 0.33)",
             position: "absolute",
@@ -74,19 +73,20 @@ const WeddingGallery = () => {
             left: 0,
             width: "100vw",
             height: "65vh",
-            justifyContent: "center",
-            alignItems: "center",
+            alignItems: "center"
           }}
         >
           <div className={`${textStyles.title}`}>Video của chúng mình...</div>
-          <button
-            onClick={openModal}
-            className="border-2 rounded-full hover:scale-110 transform transition-all duration-300 bg-gray-100 w-24 h-24"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M9.75 16.5v-9l6 4.5-6 4.5z" />
-            </svg>
-          </button>
+          <Stack sx={{ position: "absolute", bottom: "25%", left: "50%", transform: "translateX(-50%)" }}>
+            <button
+              onClick={openModal}
+              className="border-2 rounded-full hover:scale-110 transform transition-all duration-300 bg-gray-100 w-24 h-24"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9.75 16.5v-9l6 4.5-6 4.5z" />
+              </svg>
+            </button>
+          </Stack>
         </Stack>
       </div>
 

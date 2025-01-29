@@ -4,7 +4,10 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Pagination, Autoplay } from 'swiper/modules';
-import banner from '../utils/banner.json'; // Import dữ liệu từ gallery.json
+import { Stack } from "@mui/material";
+
+import banner from '../utils/banner.json';
+import textStyles from '../styles/Text.module.css';
 
 // Define wedding date to countdown
 const WEDDING_DATE = new Date('2025-03-18T18:00:00');
@@ -40,51 +43,54 @@ const Countdown: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-[830px]">
+    <div className="myContainer">
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}
         spaceBetween={0}
         slidesPerView={1}
         autoplay={{
-          delay: 3000,
+          delay: 5000,
           disableOnInteraction: false,
         }}
-        className="absolute inset-0 swiper-container h-[915px] w-full"
+        className="absolute inset-0 swiper-container w-full h-full"
       >
         {banner.images.map((image, index) => (
           <SwiperSlide key={index}>
             <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${image})` }}>
-              <div className="absolute inset-0 bg-black opacity-50"></div>
+              <div className="absolute inset-0 bg-black opacity-60"></div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
       {/* Content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-        <h2 className="text-white font-bold mb-4">Counting</h2>
-        <p className="text-lg text-white mb-8">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada
-          aliquam nunc a pharetra.
-        </p>
-        <div className="flex justify-center gap-12">
-          <div className="bg-red-300/[0.877] p-6 rounded-full w-24 h-24 flex flex-col items-center justify-center">
-            <span className="text-2xl text-white font-bold">{timeLeft.days}</span>
-            <span className="text-sm font-medium text-white">DAYS</span>
-          </div>
-          <div className="bg-red-300/[0.877] p-6 rounded-full w-24 h-24 flex flex-col items-center justify-center">
-            <span className="text-2xl text-white font-bold">{timeLeft.hours}</span>
-            <span className="text-sm font-medium text-white">HOURS</span>
-          </div>
-          <div className="bg-red-300/[0.877] p-6 rounded-full w-24 h-24 flex flex-col items-center justify-center">
-            <span className="text-2xl text-white font-bold">{timeLeft.minutes}</span>
-            <span className="text-sm font-medium text-white">MINUTES</span>
-          </div>
-          <div className="bg-red-300/[0.877] p-6 rounded-full w-24 h-24 flex flex-col items-center justify-center">
-            <span className="text-2xl text-white font-bold">{timeLeft.seconds}</span>
-            <span className="text-sm font-medium text-white">SECONDS</span>
-          </div>
+      <div className="absolute inset-0 flex flex-col z-10">
+        <div className={`${textStyles.title}`} style={{ color: 'white' }}>Chỉ còn...</div>
+          <div className="flex">
+            <div className="w-1/3"></div>
+            <Stack
+              className="w-1/3 grid grid-cols-4"
+              sx={{ position: "absolute", bottom: "30%", left: "50%", transform: "translateX(-50%)" }}
+            >
+              <div className="bg-red-300 pt-5 pb-5 rounded-full w-full flex flex-col">
+                <p className={`${textStyles.sub1Count} text-white  text-center`}>{timeLeft.days}</p>
+                <p className={`${textStyles.sub3Count} ${textStyles.wedding} text-white text-center`}>DAYS</p>
+              </div>
+              <div className="bg-red-300 pt-5 pb-5 rounded-full w-full flex flex-col">
+                <p className={`${textStyles.sub1Count} text-white  text-center`}>{timeLeft.hours}</p>
+                <p className={`${textStyles.sub3Count} ${textStyles.wedding} text-white text-center`}>HOURS</p>
+              </div>
+              <div className="bg-red-300 pt-5 pb-5 rounded-full w-full flex flex-col">
+                <p className={`${textStyles.sub1Count} text-white  text-center`}>{timeLeft.minutes}</p>
+                <p className={`${textStyles.sub3Count} ${textStyles.wedding} text-white text-center`}>MINUTES</p>
+              </div>
+              <div className="bg-red-300 pt-5 pb-5 rounded-full w-full flex flex-col">
+                <p className={`${textStyles.sub1Count} text-white  text-center`}>{timeLeft.seconds}</p>
+                <p className={`${textStyles.sub3Count} ${textStyles.wedding} text-white text-center`}>SECONDS</p>
+              </div>
+            </Stack>
+            <div className="w-1/3"></div>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ const WeddingBox: React.FC = () => {
   return (
     <div id="gifts" className="myHalfContainer myHalfContainerPad">
       <div className={`${textStyles.title}`}>Hòm mừng cưới...</div>
-      <div className="flex justify-center gap-20 pt-8 pb-8 pl-40 pr-40">
+      <div className="flex justify-center gap-10">
         <Stack key={weddingData[0].accountNumber} className="flex-row bg-white border-4 border-pink-200 w-full p-8" sx={{ borderRadius: "40px" }}>
           <div className="w-3/5">
             <p className={`${textStyles.sub1} text-left`}>{weddingData[0].title}</p>
