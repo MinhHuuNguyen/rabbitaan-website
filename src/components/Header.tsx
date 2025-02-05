@@ -1,15 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import navItems from "../utils/navbar.json";
 import textStyles from '../styles/Text.module.css';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setIsVisible(false); 
+      } else {
+        setIsVisible(true); 
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <div className="relative">
-      {/* Navbar */}
+    <div className={`sticky top-0 z-50 transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
       <nav className="bg-white w-auto border-b border-gray-300">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="relative flex h-20 items-center">
@@ -21,8 +37,6 @@ const Header = () => {
                 aria-controls="mobile-menu"
                 aria-expanded="false"
               >
-                <span className="absolute -inset-0.5"></span>
-                <span className="sr-only">Open main menu</span>
                 <svg
                   className="block size-6"
                   fill="none"
@@ -37,8 +51,8 @@ const Header = () => {
             </div>
             <div className="flex-1 flex items-center justify-between">
               <div className="flex-1 flex flex-col items-center sm:items-start justify-center">
-                <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-black font-great-vibes">
-                  Minh và Thảo Anh <i className="fa fa-heart fa-1x text-red-400"></i> 
+                <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-black font-great-vibes text-center my-5">
+                  Minh và Thảo Anh <i className="fa fa-heart fa-1x text-red-400"></i>
                 </h1>
               </div>
               <div className="hidden md:block">

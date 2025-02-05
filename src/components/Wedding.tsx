@@ -13,6 +13,8 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import { Stack } from "@mui/material";
 
 import textStyles from '../styles/Text.module.css';
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 type Event = {
   image: string;
@@ -35,6 +37,23 @@ const OurWedding: React.FC = () => {
     setEvents(eventsData.events);
   }, []);
 
+    const controls = useAnimation();
+    const { ref, inView } = useInView({
+      threshold: 0.1,
+      triggerOnce: true,
+    });
+  
+    useEffect(() => {
+      if (inView) {
+        controls.start("visible");
+      }
+    }, [controls, inView]);
+  
+    const variants = {
+      hidden: { opacity: 0, y: 15 },
+      visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+    };
+
   const handleOpenModal = (mapLink: string) => {
     setCurrentMapLink(mapLink);
     setIsModalOpen(true);
@@ -46,7 +65,10 @@ const OurWedding: React.FC = () => {
   };
 
   return (
-    <div id="wedding" className="myContainer myContainerPad">
+    <motion.div  ref={ref}
+    initial="hidden"
+    animate={controls}
+    variants={variants} id="wedding" className="myContainer myContainerPad">
       <div className={`${textStyles.title}`}>Lịch trình đám cưới...</div>
       <div className="justify-center relative items-center">
         <div className="swiper-button-prev"><i className="ri-arrow-right-s-line"></i></div>
@@ -169,7 +191,7 @@ const OurWedding: React.FC = () => {
           ></iframe>
         )}
       </Modal>
-    </div>
+    </motion.div>
   );
 };
 
