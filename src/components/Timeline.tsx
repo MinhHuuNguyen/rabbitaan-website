@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import timelineData from "../utils/timeline.json";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
+import { throttle } from "lodash";
 import textStyles from '../styles/Text.module.css';
 
-const WeddingTimeline: React.FC = () => {
+const WeddingTimeline = () => {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [backgroundImage, setBackgroundImage] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
@@ -18,10 +19,10 @@ const WeddingTimeline: React.FC = () => {
 
   const changeTimelineIndex = useCallback((direction: "up" | "down") => {
     setCurrentEventIndex((prevIndex) => {
-      const newIndex = direction === "down" ? prevIndex + 1 : prevIndex - 1;
-      const clampedIndex = Math.max(0, Math.min(newIndex, timelineData.length - 1));
-      setBackgroundImage(timelineData[clampedIndex].image);
-      return clampedIndex;
+      let newIndex = direction === "down" ? prevIndex + 1 : prevIndex - 1;
+      newIndex = Math.max(0, Math.min(newIndex, timelineData.length - 1));
+      setBackgroundImage(timelineData[newIndex].image);
+      return newIndex;
     });
   }, []);
 
@@ -31,8 +32,8 @@ const WeddingTimeline: React.FC = () => {
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     if (touchStartY.current === null) return;
-    const touchEndY = e.touches[0].clientY;
-    const deltaY = touchEndY - touchStartY.current;
+    let touchEndY = e.touches[0].clientY;
+    let deltaY = touchEndY - touchStartY.current;
 
     if (Math.abs(deltaY) > 50) {
       changeTimelineIndex(deltaY < 0 ? "down" : "up");
@@ -40,15 +41,18 @@ const WeddingTimeline: React.FC = () => {
     }
   };
 
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    if (Math.abs(e.deltaY) > 1) {
-      changeTimelineIndex(e.deltaY > 0 ? "down" : "up");
-    }
-  };
+  const handleWheel = useCallback(
+    throttle((e: React.WheelEvent<HTMLDivElement>) => {
+      if (Math.abs(e.deltaY) > 1) {
+        changeTimelineIndex(e.deltaY > 0 ? "down" : "up");
+      }
+    }, 500),
+    []
+  );
 
   return (
     <div id="story" className="my-20 w-full">
-      <div className={`${textStyles.title} `}>Chuyện tình yêu</div>
+      <div className={`${textStyles.title} ` }>Chuyện tình yêu</div>
       <div
         ref={containerRef}
         onWheel={handleWheel}
@@ -62,7 +66,7 @@ const WeddingTimeline: React.FC = () => {
         }}
       >
         <div className="mx-auto px-4 relative z-10">
-          <VerticalTimeline>
+          <VerticalTimeline >
             {timelineData.map((event, index) => (
               <VerticalTimelineElement
                 key={index}
