@@ -6,6 +6,7 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { throttle } from "lodash";
+import textStyles from '../styles/Text.module.css';
 
 const WeddingTimeline = () => {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
@@ -38,9 +39,7 @@ const WeddingTimeline = () => {
 
   return (
     <div id="story" className="my-20 w-full">
-      <div className="text-center mb-12">
-        <h2 className="font-bold">Chuyện tình yêu</h2>
-      </div>
+      <div className={`${textStyles.title} ` }>Chuyện tình yêu</div>
       <div
         ref={containerRef}
         onWheel={throttledHandleWheel}
@@ -52,16 +51,15 @@ const WeddingTimeline = () => {
         }}
       >
         <div className="mx-auto px-4 relative z-10">
-          <VerticalTimeline lineColor="#f6e7d7">
+          <VerticalTimeline >
             {timelineData.map((event, index) => (
               <VerticalTimelineElement
                 key={index}
-                className="vertical-timeline-element--work transition-opacity duration-500"
+                className="transition-opacity duration-500"
                 contentStyle={{
-                  background: "#f6e7d7",
                   color: "#2c2c2c",
                   borderRadius: "10px",
-                  height: "auto",
+                  height: "200px",
                   boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                   opacity: index === currentEventIndex ? 1 : 0.5,
                   filter: index === currentEventIndex ? "brightness(1)" : "brightness(0.5)",
@@ -78,8 +76,8 @@ const WeddingTimeline = () => {
                 }}
               >
                 <div>
-                  <h3 className="text-xl font-semibold">{event.title}</h3>
-                  <p className="mt-2">{event.description}</p>
+                  <h3 className={`${textStyles.sub1}`}>{event.title}</h3>
+                  <p className={`${textStyles.sub2}`}>{event.description}</p>
                 </div>
               </VerticalTimelineElement>
             ))}
