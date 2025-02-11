@@ -144,7 +144,7 @@ const VietnamMap: React.FC = () => {
                   layout="responsive"
                   quality={100}
                   style={{ minHeight: "12vh", maxHeight: "12vh" }}
-                  className="object-cover transition-transform hover:scale-110 hover:'ring-4 ring-yellow-500' transition"
+                  className="object-cover transition-transform hover:scale-110 hover:'ring-4 ring-yellow-500' "
                 />
               </Stack>
               <p className={`${textStyles.sub2} text-center`}>{place.place}</p>
