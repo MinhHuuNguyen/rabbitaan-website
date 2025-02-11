@@ -1,7 +1,7 @@
 import 'yet-another-react-lightbox/plugins/thumbnails.css';
 import 'yet-another-react-lightbox/styles.css';
 import Lightbox from "yet-another-react-lightbox";
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { Stack } from "@mui/material";
 import Image from "next/image";
 
@@ -11,20 +11,16 @@ import tripsData from '../utils/trips.json';
 
 const VietnamMap: React.FC = () => {
   const [svgContent, setSvgContent] = useState<string>('');
-  const [highlightedProvinces, setHighlightedProvinces] = useState<string[]>([]);
   const [selectedProvinceImages, setSelectedProvinceImages] = useState<string[]>([]);
   const [isLightboxOpen, setIsLightboxOpen] = useState<boolean>(false);
   const [hoveredProvince, setHoveredProvince] = useState<string | null>(null);
-  const [hoveredMap, setHoveredMap] = useState<string | null>(null);
+  const svgContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Load Viet Nam Map SVG
     fetch('/vietnam.svg')
       .then((response) => response.text())
       .then((data) => {
         const provinces = tripsData.map((item) => item.place);
-        setHighlightedProvinces(provinces);
-
         const parser = new DOMParser();
         const svgDoc = parser.parseFromString(data, "image/svg+xml");
 
@@ -33,7 +29,7 @@ const VietnamMap: React.FC = () => {
           if (provinceName && provinces.includes(provinceName)) {
             path.classList.add(mapStyles.vietnam);
             path.setAttribute('data-highlight', 'true');
-            path.setAttribute('data-province', provinceName); // Add a unique identifier
+            path.setAttribute('data-province', provinceName);
           }
         });
 
@@ -43,98 +39,92 @@ const VietnamMap: React.FC = () => {
       .catch((error) => console.error('Error loading SVG:', error));
   }, []);
 
-  const handleProvinceClick = (provinceName: string) => {
+  const handleProvinceClick = useCallback((provinceName: string) => {
     const provinceData = tripsData.find(item => item.place === provinceName);
     if (provinceData) {
       setSelectedProvinceImages(provinceData.image);
       setIsLightboxOpen(true);
     }
-  };
-
-  const handleCircularImageClick = (provinceName: string) => {
-    handleProvinceClick(provinceName);
-  };
+  }, []);
 
   const closeLightbox = () => {
     setIsLightboxOpen(false);
+  };
+
+  const handleSVGClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const target = event.target as SVGElement;
+    if (target.tagName.toLowerCase() === 'path') {
+      const provinceName = target.getAttribute('title');
+      if (provinceName) {
+        handleProvinceClick(provinceName);
+      }
+    }
+  };
+
+  const handleSVGMouseOver = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const target = event.target as SVGElement;
+    if (target.tagName.toLowerCase() === 'path') {
+      const provinceName = target.getAttribute('title');
+      if (provinceName) {
+        setHoveredProvince(provinceName);
+      }
+    }
+  };
+
+  const handleSVGMouseOut = () => {
+    setHoveredProvince(null);
+  };
+
+  const handleCircularImageMouseOver = (provinceName: string) => {
+    if (svgContainerRef.current) {
+      const path = svgContainerRef.current.querySelector(`path[data-province="${provinceName}"]`);
+      if (path) {
+        path.classList.add(mapStyles.hoveredProvince);
+      }
+    }
+  };
+
+  const handleCircularImageMouseOut = (provinceName: string) => {
+    if (svgContainerRef.current) {
+      const path = svgContainerRef.current.querySelector(`path[data-province="${provinceName}"]`);
+      if (path) {
+        path.classList.remove(mapStyles.hoveredProvince);
+      }
+    }
   };
 
   const provincesTotal = tripsData.length;
 
   return (
     <div id="journey" className="myContainer myContainerPad">
-      <div className={`${textStyles.title}`}>Những chuyến đi...</div>
-      <div className={`${textStyles.sub1} text-center`}>Bọn mình đã đi được {provincesTotal} tỉnh thành</div>
+      <div className={textStyles.title}>Những chuyến đi...</div>
+      <div className={`${textStyles.sub1} text-center`}>
+        Bọn mình đã đi được {provincesTotal} tỉnh thành
+      </div>
       <div className="flex" style={{ minHeight: "80vh", maxHeight: "80vh" }}>
         {/* Map Container */}
         <div className="w-1/4">
-            <div
-              className={`${mapStyles.vietnam}`}
-              dangerouslySetInnerHTML={{ __html: svgContent }}
-              onClick={(event) => {
-                const target = event.target as SVGElement;
-                if (target.tagName === 'path') {
-                  const provinceName = target.getAttribute('title');
-                  if (provinceName) {
-                    handleProvinceClick(provinceName);
-                  }
-                }
-              }}
-              onMouseOver={(event) => {
-                const target = event.target as SVGElement;
-                if (target.tagName === 'path') {
-                  const provinceName = target.getAttribute('title');
-                  if (provinceName) {
-                    setHoveredProvince(provinceName);
-                  }
-                }
-              }}
-              onMouseOut={() => {
-                setHoveredProvince(null);
-              }}
-            />
+          <div
+            ref={svgContainerRef}
+            className={mapStyles.vietnam}
+            dangerouslySetInnerHTML={{ __html: svgContent }}
+            onClick={handleSVGClick}
+            onMouseOver={handleSVGMouseOver}
+            onMouseOut={handleSVGMouseOut}
+          />
         </div>
         {/* Circular Images Container */}
-        <div className="w-3/4 grid grid-cols-6">
+        <div className="w-3/4 grid grid-cols-6 gap-4">
           {tripsData.map((place, index) => (
-            <Stack>
+            <Stack key={index} spacing={1} alignItems="center">
               <Stack
-                key={index}
-                className={`
-                  w-full
-                  overflow-hidden
-                  group
-                  ${hoveredProvince === place.place ? 'ring-4 ring-yellow-500' : ''
+                className={`w-full overflow-hidden group ${
+                  hoveredProvince === place.place ? 'ring-4 ring-yellow-500' : ''
                 }`}
                 sx={{ borderRadius: "50px", marginTop: "10px", padding: "1px" }}
-                onClick={() => handleCircularImageClick(place.place)}
-                onMouseOver={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  const isMouseInside =
-                    e.clientX >= rect.left &&
-                    e.clientX <= rect.right &&
-                    e.clientY >= rect.top &&
-                    e.clientY <= rect.bottom;
-  
-                  if (isMouseInside) {
-                    setHoveredMap(place.place);
-                    const svgDoc = new DOMParser().parseFromString(svgContent, "image/svg+xml");
-                    const path = svgDoc.querySelector(`path[data-province="${place.place}"]`);
-                    if (path) {
-                      path.classList.add(mapStyles.hoveredProvince);
-                      setSvgContent(new XMLSerializer().serializeToString(svgDoc));
-                    }
-                  }
-                }}
-                onMouseOut={() => {
-                  setHoveredMap(null);
-                  const svgDoc = new DOMParser().parseFromString(svgContent, "image/svg+xml");
-                  const path = svgDoc.querySelector(`path[data-province="${place.place}"]`);
-                  if (path) {
-                    path.classList.remove(mapStyles.hoveredProvince);
-                    setSvgContent(new XMLSerializer().serializeToString(svgDoc));
-                  }
-                }}
+                onClick={() => handleProvinceClick(place.place)}
+                onMouseOver={() => handleCircularImageMouseOver(place.place)}
+                onMouseOut={() => handleCircularImageMouseOut(place.place)}
               >
                 <Image
                   src={place.image[0]}
@@ -144,7 +134,7 @@ const VietnamMap: React.FC = () => {
                   layout="responsive"
                   quality={100}
                   style={{ minHeight: "12vh", maxHeight: "12vh" }}
-                  className="object-cover transition-transform hover:scale-110 hover:'ring-4 ring-yellow-500' "
+                  className="object-cover transition-transform hover:scale-110"
                 />
               </Stack>
               <p className={`${textStyles.sub2} text-center`}>{place.place}</p>
@@ -152,7 +142,6 @@ const VietnamMap: React.FC = () => {
             </Stack>
           ))}
         </div>
-
 
         {isLightboxOpen && (
           <Lightbox
