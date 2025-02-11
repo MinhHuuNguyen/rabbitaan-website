@@ -15,10 +15,12 @@
     "@heroicons/react": "^2.2.0",
     "@material-tailwind/react": "^2.1.10",
     "@mui/icons-material": "^6.1.4",
+    "antd": "^5.23.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "font-awesome": "^4.7.0",
     "framer-motion": "^11.18.2",
+    "lodash": "^4.17.21",
     "lucide-react": "^0.468.0",
     "next": "^15.1.7",
     "react": "^18",
@@ -35,6 +37,7 @@
     "yet-another-react-lightbox": "^3.21.7"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.15",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
