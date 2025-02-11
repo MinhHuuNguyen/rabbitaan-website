@@ -4,28 +4,10 @@ import textStyles from '../styles/Text.module.css';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
   const toggleSidebar = () => setIsOpen(!isOpen);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setIsVisible(false); 
-      } else {
-        setIsVisible(true); 
-      }
-      setLastScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
   return (
-    <div className={`sticky top-0 z-50 transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}>
+    <div className={`sticky top-0 z-50 transition-transform duration-300`}>
       <nav className="bg-white w-auto border-b border-gray-300">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="relative flex h-20 items-center">
@@ -71,7 +53,7 @@ const Header = () => {
         {/* Mobile Sidebar */}
         <div className="sm:hidden">
           <div
-            className={`fixed top-0 left-0 h-full w-60 bg-white z-40 transform ${isOpen ? "translate-x-0" : "-translate-x-full"
+            className={`fixed top-0 left-0 h-full w-60 bg-white transform ${isOpen ? "translate-x-0" : "-translate-x-full"
               } transition-transform duration-300`}
           >
             <button
