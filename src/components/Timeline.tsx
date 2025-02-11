@@ -1,29 +1,17 @@
-<<<<<<< HEAD
+
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import timelineData from "../utils/timeline.json";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { throttle } from "lodash";
 import textStyles from '../styles/Text.module.css';
-=======
-import React, { useState, useEffect, useRef } from "react";
-import timelineData from "../utils/timeline.json";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import "react-vertical-timeline-component/style.min.css";
-import { throttle } from "lodash";
->>>>>>> 597bde7 (timeline scroll)
+
 
 const WeddingTimeline = () => {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [backgroundImage, setBackgroundImage] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
-<<<<<<< HEAD
   const touchStartY = useRef<number | null>(null);
-=======
->>>>>>> 597bde7 (timeline scroll)
 
   useEffect(() => {
     if (timelineData.length > 0 && timelineData[0].image) {

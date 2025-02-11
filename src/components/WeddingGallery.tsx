@@ -132,7 +132,7 @@ const WeddingGallery = () => {
 
         {/* Video YouTube */}
         <iframe
-          className="w-full h-[600px] md:h-[700px] lg:h-[800px] xl:h-[900px]"
+          className="w-full h-[600px] md:h-[700px] lg:h-[800px] xl:h-[840px]"
           src="https://www.youtube.com/embed/a7fzkqLozwA?si=ep12eBz6Z8wFRhCl"
           title="Wedding Video"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
