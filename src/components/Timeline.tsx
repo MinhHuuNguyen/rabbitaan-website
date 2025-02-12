@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import timelineData from "../utils/timeline.json";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
@@ -56,7 +55,6 @@ const WeddingTimeline = () => {
       <div className={`${textStyles.title} ` }>Chuyện tình yêu</div>
       <div
         ref={containerRef}
-        onWheel={handleWheel}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         className="py-12 overflow-y-auto h-screen relative"
