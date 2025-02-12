@@ -42,43 +42,20 @@ const WeddingTimeline = () => {
   };
 
   const handleWheel = useCallback(
-    throttle((e: WheelEvent) => {
-      if (Math.abs(e.deltaY) > 50) {
+    throttle((e: React.WheelEvent<HTMLDivElement>) => {
+      if (Math.abs(e.deltaY) > 1) {
         changeTimelineIndex(e.deltaY > 0 ? "down" : "up");
       }
     }, 500),
     []
   );
 
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (e.key === "ArrowDown" || e.key === "PageDown") {
-      changeTimelineIndex("down");
-    } else if (e.key === "ArrowUp" || e.key === "PageUp") {
-      changeTimelineIndex("up");
-    }
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("wheel", handleWheel);
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [handleWheel, handleKeyDown]);
-
-  useEffect(() => {
-    window.addEventListener("wheel", handleWheel);
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-    };
-  }, [handleWheel]);
-
   return (
     <div id="story" className="my-20 w-full">
       <div className={`${textStyles.title} ` }>Chuyện tình yêu</div>
       <div
         ref={containerRef}
+        onWheel={handleWheel}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         className="py-12 overflow-y-auto h-screen relative"
