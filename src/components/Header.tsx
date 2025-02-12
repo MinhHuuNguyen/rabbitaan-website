@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import navItems from "../utils/navbar.json";
 import textStyles from '../styles/Text.module.css';
 

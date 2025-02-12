@@ -11,11 +11,6 @@ const WeddingBox: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false); 
   const [currentImage, setCurrentImage] = useState<string>(""); 
 
-  const openLightbox = (image: string) => {
-    setCurrentImage(image);
-    setIsOpen(true);
-  };
-
   return (
     <div id="gifts" className="myHalfContainer myHalfContainerPad">
       <div className={`${textStyles.title}`}>Hòm mừng cưới...</div>

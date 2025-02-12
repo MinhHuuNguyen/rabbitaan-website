@@ -7,9 +7,9 @@ const Footer: React.FC = () => {
         <div className="relative w-96 h-96 mb-20">
           <div className="absolute inset-0 rounded-full overflow-hidden border-4 border-opacity-30 border-black">
             <Image 
-              src="/images/flower.png" 
-              alt="Thank you" 
-              layout="fill" 
+              src="/images/flower.png"
+              alt="Thank you"
+              fill
               objectFit="cover"
             />
           </div>

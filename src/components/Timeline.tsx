@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import timelineData from "../utils/timeline.json";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
+import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { throttle } from "lodash";
 import textStyles from '../styles/Text.module.css';
@@ -12,6 +9,7 @@ const WeddingTimeline = () => {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [backgroundImage, setBackgroundImage] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
+  const touchStartY = useRef<number | null>(null);
 
   useEffect(() => {
     if (timelineData.length > 0 && timelineData[0].image) {
@@ -19,30 +17,52 @@ const WeddingTimeline = () => {
     }
   }, []);
 
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    if (e.deltaY > 0) {
-      setCurrentEventIndex((prevIndex) => {
-        const newIndex = Math.min(prevIndex + 1, timelineData.length - 1);
+  const changeTimelineIndex = (direction: "up" | "down") => {
+    setCurrentEventIndex((prevIndex) => {
+      let newIndex =
+        direction === "down"
+          ? Math.min(prevIndex + 1, timelineData.length - 1)
+          : Math.max(prevIndex - 1, 0);
+
+      if (newIndex !== prevIndex) {
         setBackgroundImage(timelineData[newIndex].image);
-        return newIndex;
-      });
-    } else if (e.deltaY < 0) {
-      setCurrentEventIndex((prevIndex) => {
-        const newIndex = Math.max(prevIndex - 1, 0);
-        setBackgroundImage(timelineData[newIndex].image);
-        return newIndex;
-      });
-    }
+      }
+
+      return newIndex;
+    });
   };
 
-  const throttledHandleWheel = throttle(handleWheel, 500);
+  const handleWheel = throttle((e: React.WheelEvent<HTMLDivElement>) => {
+    if (e.deltaY > 0) {
+      changeTimelineIndex("down");
+    } else if (e.deltaY < 0) {
+      changeTimelineIndex("up");
+    }
+  }, 500);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartY.current === null) return;
+    let touchEndY = e.touches[0].clientY;
+    let deltaY = touchEndY - touchStartY.current;
+
+    if (Math.abs(deltaY) > 50) {
+      changeTimelineIndex(deltaY < 0 ? "down" : "up");
+      touchStartY.current = null; 
+    }
+  };
 
   return (
     <div id="story" className="my-20 w-full">
       <div className={`${textStyles.title} ` }>Chuyện tình yêu</div>
       <div
         ref={containerRef}
-        onWheel={throttledHandleWheel}
+        onWheel={handleWheel}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
         className="py-12 overflow-y-auto h-screen relative"
         style={{
           backgroundImage: backgroundImage ? `url(${backgroundImage})` : "",
