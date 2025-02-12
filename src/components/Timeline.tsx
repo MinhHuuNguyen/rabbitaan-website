@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import timelineData from "../utils/timeline.json";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
+import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { throttle } from "lodash";
 import textStyles from '../styles/Text.module.css';
