@@ -6,7 +6,6 @@ import "react-vertical-timeline-component/style.min.css";
 import { throttle } from "lodash";
 import textStyles from '../styles/Text.module.css';
 
-
 const WeddingTimeline = () => {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
   const [backgroundImage, setBackgroundImage] = useState("");
