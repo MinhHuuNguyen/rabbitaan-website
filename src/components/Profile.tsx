@@ -8,11 +8,11 @@ import textStyles from '../styles/Text.module.css';
 
 const Profile: React.FC = () => {
   return (
-    <div id="couple" className="myContainer myContainerPad">
-      <div className={`${textStyles.title}`}>Chúng mình là ...</div>
-      <div className="grid grid-cols-2">
+    <div id="couple" className="relative mx-auto mb-[10px] w-full md:h-full">
+      <div className={textStyles.title}>Chúng mình là ...</div>
+      <div className="grid md:grid-cols-2">
         {profileData.map((profile, index) => (
-          <Stack key={index} className="w-full h-full" sx={{ position: "relative"}}>
+          <Stack key={index} className="w-full md:h-full" sx={{ position: "relative"}}>
             <Stack className="overflow-hidden group" sx={{ borderRadius: "40px" }}>
               <Image
                 src={profile.image}

@@ -43,7 +43,7 @@ const Countdown: React.FC = () => {
   }, []);
 
   return (
-    <div className="myContainer">
+    <div className="relative w-full h-[90vh]">
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}
@@ -67,10 +67,8 @@ const Countdown: React.FC = () => {
       {/* Content */}
       <div className="absolute inset-0 flex flex-col z-10">
         <div className={`${textStyles.title}`} style={{ color: 'white' }}>Chỉ còn...</div>
-          <div className="flex">
-            <div className="w-1/3"></div>
             <Stack
-              className="w-1/3 grid grid-cols-4"
+              className="w-3/4 lg:w-3/4 2xl:w-1/3 grid grid-cols-4"
               sx={{ position: "absolute", bottom: "30%", left: "50%", transform: "translateX(-50%)" }}
             >
               <div className="bg-red-300 pt-5 pb-5 rounded-full w-full flex flex-col">
@@ -90,10 +88,8 @@ const Countdown: React.FC = () => {
                 <p className={`${textStyles.sub3Count} ${textStyles.wedding} text-white text-center`}>SECONDS</p>
               </div>
             </Stack>
-            <div className="w-1/3"></div>
         </div>
       </div>
-    </div>
   );
 };
 

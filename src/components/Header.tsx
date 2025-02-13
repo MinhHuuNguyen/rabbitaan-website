@@ -7,11 +7,11 @@ const Header = () => {
   const toggleSidebar = () => setIsOpen(!isOpen);
 
   return (
-    <div className={`sticky top-0 z-50 transition-transform duration-300`}>
+    <div className="sticky top-0 z-50 transition-transform duration-300">
       <nav className="bg-white w-auto border-b border-gray-300">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="relative flex h-20 items-center">
-            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
               <button
                 onClick={toggleSidebar}
                 type="button"
@@ -32,15 +32,19 @@ const Header = () => {
               </button>
             </div>
             <div className="flex-1 flex items-center justify-between">
-              <div className="flex-1 flex flex-col items-center sm:items-start justify-center">
-                <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-black font-great-vibes text-center my-5">
+              <div className="flex-1 flex flex-col items-center xl:items-start justify-center">
+                <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl-text-4xl text-black font-great-vibes text-center my-5">
                   Minh và Thảo Anh <i className="fa fa-heart fa-1x text-red-400"></i>
                 </h1>
               </div>
-              <div className="hidden md:block">
+              <div className="hidden lg:block">
                 <div className="flex gap-10">
                   {navItems.map((item, index) => (
-                    <a key={index} href={item.href} className={`${textStyles.sub2} rounded-md hover:text-[#f98d8a]`}>
+                    <a
+                      key={index}
+                      href={item.href}
+                      className={`${textStyles.sub2} rounded-md hover:text-[#f98d8a]`}
+                    >
                       {item.label}
                     </a>
                   ))}
@@ -51,10 +55,11 @@ const Header = () => {
         </div>
 
         {/* Mobile Sidebar */}
-        <div className="sm:hidden">
+        <div className="lg:hidden">
           <div
-            className={`fixed top-0 left-0 h-full w-60 bg-white transform ${isOpen ? "translate-x-0" : "-translate-x-full"
-              } transition-transform duration-300`}
+            className={`fixed top-0 left-0 h-full w-60 bg-white transform ${
+              isOpen ? "translate-x-0" : "-translate-x-full"
+            } transition-transform duration-300`}
           >
             <button
               onClick={toggleSidebar}
@@ -65,7 +70,10 @@ const Header = () => {
             <ul className="flex flex-col h-full gap-5 p-5 border-r border-gray-300">
               {navItems.map((item, index) => (
                 <li key={index}>
-                  <a href={item.href} className={`${textStyles.sub2} rounded-md hover:text-[#f98d8a]`}>
+                  <a
+                    href={item.href}
+                    className={`${textStyles.sub2} rounded-md hover:text-[#f98d8a]`}
+                  >
                     {item.label}
                   </a>
                 </li>
