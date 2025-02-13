@@ -41,14 +41,11 @@ const WeddingTimeline: React.FC = () => {
     }
   };
 
-  const handleWheel = useCallback(
-    throttle((e: React.WheelEvent<HTMLDivElement>) => {
-      if (Math.abs(e.deltaY) > 1) {
-        changeTimelineIndex(e.deltaY > 0 ? "down" : "up");
-      }
-    }, 500),
-    [changeTimelineIndex]
-  );
+  const handleWheel = throttle((e: React.WheelEvent<HTMLDivElement>) => {
+    if (Math.abs(e.deltaY) > 1) {
+      changeTimelineIndex(e.deltaY > 0 ? "down" : "up");
+    }
+  }, 500);
 
   return (
     <div id="story" className="my-20 w-full">
