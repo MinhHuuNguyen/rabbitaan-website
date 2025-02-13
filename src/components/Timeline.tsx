@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import timelineData from "../utils/timeline.json";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import { throttle } from "lodash";
 import textStyles from '../styles/Text.module.css';
 
 const WeddingTimeline: React.FC = () => {
@@ -41,11 +40,11 @@ const WeddingTimeline: React.FC = () => {
     }
   };
 
-  const handleWheel = throttle((e: React.WheelEvent<HTMLDivElement>) => {
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     if (Math.abs(e.deltaY) > 1) {
       changeTimelineIndex(e.deltaY > 0 ? "down" : "up");
     }
-  }, 500);
+  };
 
   return (
     <div id="story" className="my-20 w-full">
