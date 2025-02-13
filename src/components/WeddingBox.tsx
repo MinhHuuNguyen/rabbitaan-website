@@ -1,21 +1,11 @@
-import React, { useState } from "react";
-import Lightbox from "yet-another-react-lightbox";
+import React from "react";
 import "yet-another-react-lightbox/styles.css";
 import Image from "next/image";
 import { Stack } from "@mui/material";
-
 import weddingData from "../utils/wedding_box.json";
 import textStyles from '../styles/Text.module.css';
 
 const WeddingBox: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false); 
-  const [currentImage, setCurrentImage] = useState<string>(""); 
-
-  const openLightbox = (image: string) => {
-    setCurrentImage(image);
-    setIsOpen(true);
-  };
-
   return (
     <div id="gifts" className="myHalfContainer myHalfContainerPad">
       <div className={`${textStyles.title}`}>Hòm mừng cưới...</div>
@@ -61,15 +51,6 @@ const WeddingBox: React.FC = () => {
           </div>
         </Stack>
       </div>
-
-      {/* Lightbox */}
-      {isOpen && (
-        <Lightbox
-          open={isOpen}
-          close={() => setIsOpen(false)}
-          slides={[{ src: currentImage }]} 
-        />
-      )}
     </div>
   );
 };
