@@ -101,7 +101,7 @@ const VietnamMap: React.FC = () => {
       <div className={`${textStyles.sub1} text-center`}>
         Bọn mình đã đi được {provincesTotal} tỉnh thành
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
         {/* Map Container */}
         <div className="col-span-1">
           <div
@@ -114,7 +114,7 @@ const VietnamMap: React.FC = () => {
           />
         </div>
         {/* Circular Images Container */}
-        <div className="col-span-1 md:col-span-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div className="xl:col-span-2 2xl:col-span-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
           {tripsData.map((place, index) => (
             <Stack key={index} spacing={1} alignItems="center">
               <Stack
