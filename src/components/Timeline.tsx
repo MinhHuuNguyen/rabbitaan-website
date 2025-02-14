@@ -9,6 +9,7 @@ const WeddingTimeline: React.FC = () => {
   const [backgroundImage, setBackgroundImage] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStartY = useRef<number | null>(null);
+  const isScrolling = useRef(false);
 
   useEffect(() => {
     if (timelineData.length > 0 && timelineData[0].image) {
@@ -41,24 +42,30 @@ const WeddingTimeline: React.FC = () => {
   };
 
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    if (isScrolling.current) return;
     if (Math.abs(e.deltaY) > 1) {
+      isScrolling.current = true;
       changeTimelineIndex(e.deltaY > 0 ? "down" : "up");
+      setTimeout(() => {
+        isScrolling.current = false;
+      }, 700);
     }
   };
 
   return (
-    <div id="story" className="my-20 w-full">
-      <div className={`${textStyles.title} `}>Chuyện tình yêu</div>
+    <div id="story" className="my-20 md:w-[100wh]">
+      <div className={`${textStyles.title}`}>Chuyện tình yêu</div>
       <div
         ref={containerRef}
         onWheel={handleWheel}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
-        className="py-12 overflow-y-auto h-screen relative"
+        className="py-12 md:py-16 lg:py-20 overflow-y-auto h-[70vh] md:h-[80vh] lg:h-[90vh] relative"
         style={{
           backgroundImage: backgroundImage ? `url(${backgroundImage})` : "",
           transition: "background-image 1s ease-in-out",
           backgroundSize: "cover",
+          scrollSnapType: "y mandatory",
         }}
       >
         <div className="mx-auto px-4 relative z-10">
