@@ -17,7 +17,7 @@ const VietnamMap: React.FC = () => {
   const svgContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetch('/vietnam.svg')
+    fetch('/images/vietnam.svg')
       .then((response) => response.text())
       .then((data) => {
         const provinces = tripsData.map((item) => item.place);
