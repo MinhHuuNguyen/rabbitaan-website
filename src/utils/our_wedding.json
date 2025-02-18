@@ -1,7 +1,7 @@
 {
   "events": [
     {
-      "image": "/our_wedding/crop/le_an_hoi.jpg",
+      "image": "/our_wedding/webp/le_an_hoi.webp",
       "card": "",
       "title": "LỄ ĂN HỎI",
       "location": "Tư gia Nhà Gái",
@@ -11,7 +11,7 @@
       "mapLink": ""
     },
     {
-      "image": "/our_wedding/crop/dam_cuoi_than_mat.jpg",
+      "image": "/our_wedding/webp/dam_cuoi_than_mat.webp",
       "card": "/our_wedding/thiep/thiep_dam_cuoi_than_mat.jpeg",
       "title": "ĐÁM CƯỚI THÂN MẬT",
       "location": "Casa de Ruby Gia Lâm",
@@ -21,7 +21,7 @@
       "mapLink": ""
     },
     {
-      "image": "/our_wedding/crop/tiec_cuoi_nha_gai.jpg",
+      "image": "/our_wedding/webp/tiec_cuoi_nha_gai.webp",
       "card": "/our_wedding/thiep/thiep_tiec_cuoi_nha_gai.jpeg",
       "title": "TIỆC CƯỚI",
       "location": "Tư gia Nhà Gái",
@@ -31,7 +31,7 @@
       "mapLink": ""
     },
     {
-      "image": "/our_wedding/crop/le_vu_quy.jpg",
+      "image": "/our_wedding/webp/le_vu_quy.webp",
       "card": "/our_wedding/thiep/thiep_le_vu_quy.jpeg",
       "title": "LỄ VU QUY",
       "location": "Tư gia Nhà Gái",
@@ -41,7 +41,7 @@
       "mapLink": ""
     },
     {
-      "image": "/our_wedding/crop/le_thanh_hon.jpg",
+      "image": "/our_wedding/webp/le_thanh_hon.webp",
       "card": "/our_wedding/thiep/thiep_le_thanh_hon.jpeg",
       "title": "LỄ THÀNH HÔN",
       "location": "Tư gia Nhà Trai",
@@ -51,7 +51,7 @@
       "mapLink": ""
     },
     {
-      "image": "/our_wedding/crop/tiec_cuoi_trong_dong.jpg",
+      "image": "/our_wedding/webp/tiec_cuoi_trong_dong.webp",
       "card": "/our_wedding/thiep/thiep_tiec_cuoi_trong_dong.jpeg",
       "title": "TIỆC CƯỚI",
       "location": "Trống Đồng Palace Cảnh Hồ",
