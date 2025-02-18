@@ -2,6 +2,7 @@
   "events": [
     {
       "image": "/our_wedding/crop/le_an_hoi.jpg",
+      "card": "",
       "title": "LỄ ĂN HỎI",
       "location": "Tư gia Nhà Gái",
       "address": "Đường Đình Từ, thôn Lục Bắc, Thái Xuyên, Thái Thuỵ, Thái Bình.",
@@ -11,6 +12,7 @@
     },
     {
       "image": "/our_wedding/crop/dam_cuoi_than_mat.jpg",
+      "card": "/our_wedding/thiep/thiep_dam_cuoi_than_mat.jpeg",
       "title": "ĐÁM CƯỚI THÂN MẬT",
       "location": "Casa de Ruby Gia Lâm",
       "address": "Ngõ 64, đường Ngô Xuân Quảng, Trâu Quỳ, Gia Lâm, Hà Nội.",
@@ -19,7 +21,18 @@
       "mapLink": ""
     },
     {
+      "image": "/our_wedding/crop/tiec_cuoi_nha_gai.jpg",
+      "card": "/our_wedding/thiep/thiep_tiec_cuoi_nha_gai.jpeg",
+      "title": "TIỆC CƯỚI",
+      "location": "Tư gia Nhà Gái",
+      "address": "Đường Đình Từ, thôn Lục Bắc, Thái Xuyên, Thái Thuỵ, Thái Bình.",
+      "time": "16h30 - 19h30",
+      "day": "Thứ 2, 17 tháng 3 năm 2025",
+      "mapLink": ""
+    },
+    {
       "image": "/our_wedding/crop/le_vu_quy.jpg",
+      "card": "/our_wedding/thiep/thiep_le_vu_quy.jpeg",
       "title": "LỄ VU QUY",
       "location": "Tư gia Nhà Gái",
       "address": "Đường Đình Từ, thôn Lục Bắc, Thái Xuyên, Thái Thuỵ, Thái Bình.",
@@ -29,6 +42,7 @@
     },
     {
       "image": "/our_wedding/crop/le_thanh_hon.jpg",
+      "card": "/our_wedding/thiep/thiep_le_thanh_hon.jpeg",
       "title": "LỄ THÀNH HÔN",
       "location": "Tư gia Nhà Trai",
       "address": "Số 15A, ngõ 191, phố Khương Thượng, Đống Đa, Hà Nội.",
@@ -37,7 +51,8 @@
       "mapLink": ""
     },
     {
-      "image": "/our_wedding/crop/tiec_cuoi.jpg",
+      "image": "/our_wedding/crop/tiec_cuoi_trong_dong.jpg",
+      "card": "/our_wedding/thiep/thiep_tiec_cuoi_trong_dong.jpeg",
       "title": "TIỆC CƯỚI",
       "location": "Trống Đồng Palace Cảnh Hồ",
       "address": "173B, đường Trường Chinh, Khương Mai, Thanh Xuân, Hà Nội",
