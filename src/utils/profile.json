@@ -5,7 +5,7 @@
     "father": "Lâm Văn Nguyên",
     "mother": "Phạm Thị Hà",
     "address": "Đường Đình Từ, Lục Bắc, Thái Xuyên, Thái Thuỵ, Thái Bình",
-    "image": "/profile/crop/Tho.jpeg",
+    "image": "/profile/webp/Tho.webp",
     "bio": "Ut malesuada sed est sed porttitor. Vestibulum quis turpis at lacus commodo elementum sit amet et mauris."
   },
   {
@@ -14,7 +14,7 @@
     "father": "Nguyễn Hữu Thịnh",
     "mother": "Võ Thị Thanh Thuỷ",
     "address": "Số nhà 15A, ngõ 191, Khương Thượng, Đống Đa, Hà Nội",
-    "image": "/profile/crop/Minh.jpeg",
+    "image": "/profile/webp/Minh.webp",
     "bio": "Ut malesuada sed est sed porttitor. Vestibulum quis turpis at lacus commodo elementum sit amet et mauris."
   }
 ]
