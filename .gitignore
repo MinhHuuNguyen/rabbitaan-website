@@ -37,3 +37,5 @@ next-env.d.ts
 
 # auto-generated
 yarn.lock
+
+my_env
