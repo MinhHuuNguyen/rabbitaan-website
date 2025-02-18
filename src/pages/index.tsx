@@ -31,7 +31,7 @@ export default function Home() {
       }, 5000);
     };
 
-    const heartInterval = setInterval(createHeart, 1000);
+    const heartInterval = setInterval(createHeart, 500);
 
     return () => clearInterval(heartInterval);
   }, []);
@@ -43,17 +43,17 @@ export default function Home() {
         <main
           className={`${
             loading ? 'opacity-0' : 'opacity-100'
-          } ${loading ? 'translate-y-10' : 'translate-y-0'} transition-all duration-700 ease-out`} 
+          } ${loading ? 'translate-y-10' : 'translate-y-0'} transition-all duration-1000 ease-out`} 
         >
 
           {/* Apply fade-in and slide-up effect */}
           <Countdown />
           <Profile />
+          <Timeline />
           <VietnamMap />
           <Wedding />
           <WeddingGiftPage />
           <WeddingGallery />
-          <Timeline />
         </main>
       </div>
     </Layout>
