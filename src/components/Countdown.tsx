@@ -68,7 +68,7 @@ const Countdown: React.FC = () => {
       <div className="absolute inset-0 flex flex-col z-10">
         <div className={`${textStyles.title}`} style={{ color: 'white' }}>Chỉ còn...</div>
             <Stack
-              className="w-3/4 lg:w-3/4 2xl:w-1/3 grid grid-cols-4"
+              className="w-3/4 lg:w-3/4 2xl:w-1/3 grid-container"
               sx={{ position: "absolute", bottom: "30%", left: "50%", transform: "translateX(-50%)" }}
             >
               <div className="bg-red-300 pt-5 pb-5 rounded-full w-full flex flex-col">
