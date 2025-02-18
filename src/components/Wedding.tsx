@@ -13,6 +13,8 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import { Stack } from "@mui/material";
 
 import textStyles from '../styles/Text.module.css';
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 type Event = {
   image: string;
@@ -35,6 +37,23 @@ const OurWedding: React.FC = () => {
     setEvents(eventsData.events);
   }, []);
 
+    const controls = useAnimation();
+    const { ref, inView } = useInView({
+      threshold: 0.1,
+      triggerOnce: true,
+    });
+  
+    useEffect(() => {
+      if (inView) {
+        controls.start("visible");
+      }
+    }, [controls, inView]);
+  
+    const variants = {
+      hidden: { opacity: 0, y: 15 },
+      visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+    };
+
   const handleOpenModal = (mapLink: string) => {
     setCurrentMapLink(mapLink);
     setIsModalOpen(true);
@@ -46,7 +65,10 @@ const OurWedding: React.FC = () => {
   };
 
   return (
-    <div id="wedding" className="myContainer myContainerPad">
+    <motion.div  ref={ref}
+    initial="hidden"
+    animate={controls}
+    variants={variants} id="wedding" className="relative w-full h-[90vh] md:h-full">
       <div className={`${textStyles.title}`}>Lịch trình đám cưới...</div>
       <div className="justify-center relative items-center">
         <div className="swiper-button-prev"><i className="ri-arrow-right-s-line"></i></div>
@@ -56,9 +78,10 @@ const OurWedding: React.FC = () => {
           modules={[Navigation, Pagination, Autoplay]}
           navigation={{ nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }}
           spaceBetween={10}
-          slidesPerView={2}
+          slidesPerView={1}
           autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true}}
           breakpoints={{
+            640: { slidesPerView: 2 },
             1280: { slidesPerView: 3 },
             1530: { slidesPerView: 4 }
           }}
@@ -66,7 +89,7 @@ const OurWedding: React.FC = () => {
           {events.map((event, index) => (
             <SwiperSlide key={index}>
               <Stack
-                className="w-full h-full"
+                className="w-full h-auto"
                 sx={{ borderRadius: "30px", backgroundColor: "rgba(217, 158, 158, 0.23)"}}
               >
                 <Stack className="overflow-hidden group" sx={{ borderRadius: "30px" }}>
@@ -151,7 +174,7 @@ const OurWedding: React.FC = () => {
       <Modal
         isOpen={isModalOpen}
         onRequestClose={handleCloseModal}
-        className={styles.modalContent}
+        className="relative w-11/12 md:w-3/4 lg:w-2/3 xl:w-9/12 p-3 bg-white rounded mx-auto my-auto"
         overlayClassName={styles.modalOverlay}
       >
         <button onClick={handleCloseModal} className="absolute top-[-1rem] right-[-1rem] w-6 h-6 flex items-center justify-center bg-black border-2 border-white-300 rounded-full shadow ">
@@ -160,8 +183,7 @@ const OurWedding: React.FC = () => {
         {currentMapLink && (
           <iframe
             src={currentMapLink}
-            width="900px"
-            height="500px"
+            className="w-full h-[600px] md:h-[700px] lg:h-[800px] xl:h-[840px]"
             style={{ border: 0 }}
             allowFullScreen={true}
             loading="lazy"
@@ -169,7 +191,7 @@ const OurWedding: React.FC = () => {
           ></iframe>
         )}
       </Modal>
-    </div>
+    </motion.div>
   );
 };
 

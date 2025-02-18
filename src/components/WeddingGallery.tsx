@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Modal from "react-modal";
 import Lightbox from "yet-another-react-lightbox";
@@ -9,6 +9,8 @@ import Image from "next/image";
 import { Stack } from "@mui/material";
 
 import textStyles from '../styles/Text.module.css';
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const WeddingGallery = () => {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
@@ -17,6 +19,23 @@ const WeddingGallery = () => {
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
+  const controls = useAnimation();
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  const variants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
 
   const images = galleryData.images.map((image) => ({ src: image }));
 
@@ -26,7 +45,13 @@ const WeddingGallery = () => {
   };
 
   return (
-    <section id="gallery" >
+    <motion.section
+     id="gallery" 
+     ref={ref}
+     initial="hidden"
+     animate={controls}
+     variants={variants}
+     >
       {/* Gallery */}
       <div className="myContainer myContainerPad">
         <div className={`${textStyles.title}`}>Bộ ảnh cưới nè...</div>
@@ -95,7 +120,7 @@ const WeddingGallery = () => {
         isOpen={isOpen}
         onRequestClose={closeModal}
         className="relative w-11/12 md:w-3/4 lg:w-2/3 xl:w-9/12 p-3 bg-white rounded mx-auto my-auto"
-        overlayClassName="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center"
+        overlayClassName="fixed z-[60] inset-0 bg-black bg-opacity-90 flex items-center justify-center"
       >
         {/* Nút đóng modal */}
         <button
@@ -107,7 +132,7 @@ const WeddingGallery = () => {
 
         {/* Video YouTube */}
         <iframe
-          className="w-full h-[600px] md:h-[700px] lg:h-[800px] xl:h-[900px]"
+          className="w-full h-[600px] md:h-[700px] lg:h-[800px] xl:h-[840px]"
           src="https://www.youtube.com/embed/a7fzkqLozwA?si=ep12eBz6Z8wFRhCl"
           title="Wedding Video"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -124,7 +149,7 @@ const WeddingGallery = () => {
           index={currentIndex}
         />
       )}
-    </section>
+    </motion.section>
   );
 };
 
