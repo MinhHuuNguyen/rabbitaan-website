@@ -255,26 +255,28 @@ const OurWedding: React.FC = () => {
                         </p>
                       </div>
                     </button>
-                    <button
-                      onClick={() => handleOpenCardModal(event.card)}
-                      className="flex border-2 border-red-300 rounded-full hover:bg-red-300/[0.877] hover:text-white transition pt-2 pl-4 pr-4"
-                    >
-                      <div className="w-1/8">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          className="w-6 h-6"
-                        >
-                          <path d="M3 4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2H3V4zm0 4h18v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8zm3 2v2h12v-2H6z" />
-                        </svg>
-                      </div>
-                      <div className="w-7/8">
-                        <p className={`${textStyles.sub2} text-justify`}>
-                          Xem thiệp cưới
-                        </p>
-                      </div>
-                    </button>
+                    {event.card && event.card.trim() !== "" && (
+                      <button
+                        onClick={() => handleOpenCardModal(event.card)}
+                        className="flex border-2 border-red-300 rounded-full hover:bg-red-300/[0.877] hover:text-white transition pt-2 pl-4 pr-4"
+                      >
+                        <div className="w-1/8">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            className="w-6 h-6"
+                          >
+                            <path d="M3 4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2H3V4zm0 4h18v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8zm3 2v2h12v-2H6z" />
+                          </svg>
+                        </div>
+                        <div className="w-7/8">
+                          <p className={`${textStyles.sub2} text-justify`}>
+                            Xem thiệp cưới
+                          </p>
+                        </div>
+                      </button>
+                    )}
                   </div>
                 </div>
               </Stack>
