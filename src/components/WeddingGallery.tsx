@@ -90,10 +90,8 @@ const WeddingGallery = () => {
              <LoadingButton
               onClick={() => fetchNextPage()}
               loading={isFetchingNextPage}
-              variant="contained"
-              color="primary"
             >
-              Xem thêm
+              <div className={`${textStyles.sub1}`}>Xem thêm</div>
             </LoadingButton>
           </div>
         )}
