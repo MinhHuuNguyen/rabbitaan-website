@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Modal from "react-modal";
 import Lightbox from "yet-another-react-lightbox";
@@ -11,15 +11,15 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { LoadingButton } from "@mui/lab";
 import textStyles from "../styles/Text.module.css";
 
-
 const WeddingGallery = () => {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
-  const pageSize = 10;
+  const pageSize = 8;
 
   const fetchImages = async ({ pageParam = 0 }): Promise<{ images: string[]; nextPage?: number }> => {
     await new Promise((resolve) => setTimeout(resolve, 500));
@@ -49,10 +49,29 @@ const WeddingGallery = () => {
     [data]
   );
 
+  const displayedImages = useMemo(
+    () => (isExpanded ? weddingImage : weddingImage.slice(0, pageSize)),
+    [weddingImage, isExpanded]
+  );
+
   const slides = useMemo(
     () => weddingImage.map((image) => ({ src: image })),
     [weddingImage]
   );
+
+  const handleLoadMore = useCallback(() => {
+    if (hasNextPage) {
+      fetchNextPage().then(() => {
+        setIsExpanded(true);
+      });
+    } else {
+      setIsExpanded(true);
+    }
+  }, [fetchNextPage, hasNextPage]);
+
+  const handleCollapse = useCallback(() => {
+    setIsExpanded(false);
+  }, []);
 
   const handleImageClick = (index: number) => {
     setCurrentIndex(index);
@@ -64,8 +83,8 @@ const WeddingGallery = () => {
       {/* Gallery */}
       <div className="relative mb-3 mx-auto w-full h-auto">
         <div className={`${textStyles.title}`}>Bộ ảnh cưới nè...</div>
-        <div className="columns-4 sm:columns-5 md:columns-6 xl:columns-7">
-          {weddingImage.map((image, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {displayedImages.map((image, index) => (
             <Stack
               key={index}
               className="mb-4 break-inside-avoid cursor-pointer overflow-hidden group"
@@ -73,6 +92,7 @@ const WeddingGallery = () => {
               onClick={() => handleImageClick(index)}
             >
               <Image
+                key={image}
                 src={image}
                 alt={`Wedding Image ${index}`}
                 width={0}
@@ -80,21 +100,44 @@ const WeddingGallery = () => {
                 layout="responsive"
                 loading="lazy"
                 quality={100}
-                className="w-full group-hover:scale-110"
+                className="group-hover:scale-110 transition-transform"
               />
             </Stack>
           ))}
         </div>
-        {hasNextPage && (
-          <div className="flex justify-center mt-4">
-             <LoadingButton
-              onClick={() => fetchNextPage()}
+        <div className="flex justify-center mt-4">
+          {hasNextPage ? (
+
+            <LoadingButton
+              onClick={handleLoadMore}
+              disabled={isFetchingNextPage}
               loading={isFetchingNextPage}
+              variant="outlined"
+              color="primary"
             >
               <div className={`${textStyles.sub1}`}>Xem thêm</div>
             </LoadingButton>
-          </div>
-        )}
+          ) : (
+            
+            isExpanded ? (
+              <LoadingButton
+                onClick={handleCollapse}
+                variant="outlined"
+                color="secondary"
+              >
+                <div className={`${textStyles.sub1}`}>Thu gọn</div>
+              </LoadingButton>
+            ) : (
+              <LoadingButton
+                onClick={() => setIsExpanded(true)}
+                variant="outlined"
+                color="primary"
+              >
+                <div className={`${textStyles.sub1}`}>Xem thêm</div>
+              </LoadingButton>
+            )
+          )}
+        </div>
       </div>
 
       {/* Video */}

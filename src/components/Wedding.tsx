@@ -11,10 +11,7 @@ import eventsData from "../utils/our_wedding.json";
 import Image from "next/image";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { Stack } from "@mui/material";
-
 import textStyles from "../styles/Text.module.css";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 
 type Event = {
   image: string;
@@ -40,23 +37,6 @@ const OurWedding: React.FC = () => {
     setEvents(eventsData.events);
   }, []);
 
-  const controls = useAnimation();
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
-
-  const variants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1 } },
-  };
-
   const handleOpenMapModal = (mapLink: string) => {
     setCurrentMapLink(mapLink);
     setIsMapModalOpen(true);
@@ -78,11 +58,7 @@ const OurWedding: React.FC = () => {
   }
 
   return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={variants}
+    <div
       id="wedding"
       className="relative w-full h-[90vh] md:h-full"
     >
@@ -335,7 +311,7 @@ const OurWedding: React.FC = () => {
           />
         )}
       </Modal>
-    </motion.div>
+    </div>
   );
 };
 
