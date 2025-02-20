@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import Modal from "react-modal";
 import Lightbox from "yet-another-react-lightbox";
@@ -19,7 +19,7 @@ const WeddingGallery = () => {
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
-  const pageSize = 10;
+  const pageSize = 8;
 
   const fetchImages = async ({ pageParam = 0 }): Promise<{ images: string[]; nextPage?: number }> => {
     await new Promise((resolve) => setTimeout(resolve, 500));
@@ -54,6 +54,10 @@ const WeddingGallery = () => {
     [weddingImage]
   );
 
+  const handleLoadMore = useCallback(() => {
+    fetchNextPage();
+  }, [fetchNextPage]);
+
   const handleImageClick = (index: number) => {
     setCurrentIndex(index);
     setIsLightboxOpen(true);
@@ -64,7 +68,7 @@ const WeddingGallery = () => {
       {/* Gallery */}
       <div className="relative mb-3 mx-auto w-full h-auto">
         <div className={`${textStyles.title}`}>Bộ ảnh cưới nè...</div>
-        <div className="columns-4 sm:columns-5 md:columns-6 xl:columns-7">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {weddingImage.map((image, index) => (
             <Stack
               key={index}
@@ -73,6 +77,7 @@ const WeddingGallery = () => {
               onClick={() => handleImageClick(index)}
             >
               <Image
+                key={image}
                 src={image}
                 alt={`Wedding Image ${index}`}
                 width={0}
@@ -80,7 +85,7 @@ const WeddingGallery = () => {
                 layout="responsive"
                 loading="lazy"
                 quality={100}
-                className="w-full group-hover:scale-110"
+                className="group-hover:scale-110 transition-transform"
               />
             </Stack>
           ))}
@@ -88,8 +93,11 @@ const WeddingGallery = () => {
         {hasNextPage && (
           <div className="flex justify-center mt-4">
              <LoadingButton
-              onClick={() => fetchNextPage()}
+              onClick={handleLoadMore}
+              disabled={!hasNextPage || isFetchingNextPage}
               loading={isFetchingNextPage}
+              variant="outlined"
+              color="primary"
             >
               <div className={`${textStyles.sub1}`}>Xem thêm</div>
             </LoadingButton>
