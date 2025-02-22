@@ -1,105 +1,60 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import timelineData from "../utils/timeline.json";
-import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
-import "react-vertical-timeline-component/style.min.css";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import textStyles from '../styles/Text.module.css';
 
 const WeddingTimeline: React.FC = () => {
-  const [currentEventIndex, setCurrentEventIndex] = useState(0);
-  const [backgroundImage, setBackgroundImage] = useState("");
-  const containerRef = useRef<HTMLDivElement>(null);
-  const touchStartY = useRef<number | null>(null);
-  const isScrolling = useRef(false);
-
-  useEffect(() => {
-    if (timelineData.length > 0 && timelineData[0].image) {
-      setBackgroundImage(timelineData[0].image);
-    }
-  }, []);
-
-  const changeTimelineIndex = useCallback((direction: "up" | "down") => {
-    setCurrentEventIndex((prevIndex) => {
-      const newIndex = direction === "down" ? prevIndex + 1 : prevIndex - 1;
-      const clampedIndex = Math.max(0, Math.min(newIndex, timelineData.length - 1));
-      setBackgroundImage(timelineData[clampedIndex].image);
-      return clampedIndex;
-    });
-  }, []);
-
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchStartY.current = e.touches[0].clientY;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (touchStartY.current === null) return;
-    const touchEndY = e.touches[0].clientY;
-    const deltaY = touchEndY - touchStartY.current;
-
-    if (Math.abs(deltaY) > 50) {
-      changeTimelineIndex(deltaY < 0 ? "down" : "up");
-      touchStartY.current = null;
-    }
-  };
-
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    if (isScrolling.current) return;
-    if (Math.abs(e.deltaY) > 1) {
-      isScrolling.current = true;
-      changeTimelineIndex(e.deltaY > 0 ? "down" : "up");
-      setTimeout(() => {
-        isScrolling.current = false;
-      }, 700);
-    }
-  };
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
     <div id="story" className="my-20 md:w-[100wh]">
       <div className={`${textStyles.title}`}>Chuyện tình yêu</div>
-      <div
-        ref={containerRef}
-        onWheel={handleWheel}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        className="py-12 md:py-16 lg:py-20 overflow-y-auto h-[70vh] md:h-[80vh] lg:h-[90vh] relative"
-        style={{
-          backgroundImage: backgroundImage ? `url(${backgroundImage})` : "",
-          transition: "background-image 1s ease-in-out",
-          backgroundSize: "cover",
-          scrollSnapType: "y mandatory",
-        }}
-      >
-        <div className="mx-auto px-4 relative z-10">
-          <VerticalTimeline>
-            {timelineData.map((event, index) => (
-              <VerticalTimelineElement
+      <div className="flex h-[400px] md:h-[600px] lg:h-[800px] 2xl:h-screen overflow-hidden snap-y snap-mandatory scroll-smooth overflow-y-auto">
+        <div className="w-1/3 p-8">
+          {timelineData.map((event, index) => {
+            const { ref, inView } = useInView({
+              threshold: 0.5,
+              triggerOnce: false,
+            });
+
+            useEffect(() => {
+              if (inView) {
+                setCurrentIndex(index);
+              }
+            }, [inView, index]);
+
+            return (
+              <motion.div
                 key={index}
-                className="transition-opacity duration-500"
-                contentStyle={{
-                  color: "#2c2c2c",
-                  borderRadius: "10px",
-                  height: "200px",
-                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                  opacity: index === currentEventIndex ? 1 : 0.5,
-                  filter: index === currentEventIndex ? "brightness(1)" : "brightness(0.5)",
-                  transition: "opacity 0.5s ease, filter 0.5s ease",
+                ref={ref}
+                className="flex flex-col justify-center text-center align-middle h-[400px] md:h-[600px] lg:h-[800px] 2xl:h-screen"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{
+                  opacity: inView ? 1 : 0.4,
+                  x: inView ? 0 : -30,
                 }}
-                contentArrowStyle={{
-                  borderRight: "7px solid #f6e7d7",
-                }}
-                date={event.time}
-                iconStyle={{
-                  background: "#f18484",
-                  color: "#fff",
-                  fontSize: "20px",
-                }}
+                transition={{ duration: 0.5 }}
               >
-                <div>
-                  <h3 className={`${textStyles.sub1}`}>{event.title}</h3>
-                  <p className={`${textStyles.sub2}`}>{event.description}</p>
-                </div>
-              </VerticalTimelineElement>
-            ))}
-          </VerticalTimeline>
+
+                <h3 className={`${textStyles.sub1} mb-5`}>{event.title}</h3>
+                <p className={`${textStyles.sub2} mb-5`}>{event.description}</p>
+                <span className="text-sm text-gray-500">{event.time}</span>
+              </motion.div>
+            );
+          })}
+        </div>
+        <div className="w-2/3 sticky top-0">
+            <motion.img
+              key={timelineData[currentIndex].image}
+              src={timelineData[currentIndex].image}
+              alt={timelineData[currentIndex].title}
+              className="w-full h-full rounded-lg shadow-lg"
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              transition={{ duration: 0.3 }}
+            />
         </div>
       </div>
     </div>
