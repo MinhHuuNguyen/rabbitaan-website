@@ -36,7 +36,7 @@ const Profile: React.FC = () => {
               borderRadius: "30px",
               padding: "10px",
             }}>
-              <p className={`${textStyles.sub1} text-white text-justify`}>{profile.name}</p>
+              <p className={`${textStyles.sub1} m-auto p-auto text-white text-justify`}>{profile.name}</p>
               <p className={`${textStyles.sub2} text-white text-justify`}>Con ông {profile.father} và bà {profile.mother}</p>
               <p className={`${textStyles.sub2} text-white text-justify`}>Tư gia {profile.address}</p>
               <p className={`${textStyles.sub2} text-white text-justify`}>{profile.bio}</p>
